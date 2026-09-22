@@ -1,0 +1,33 @@
+# Shared-host overlay for the current ARM64 deployment.
+#
+# Supply DB_PASSWORD and DB_NAME through a mode-600 --env-file. This file has
+# no credentials and deliberately reuses the named PostgreSQL volume so a
+# release can be recreated without creating a second database volume.
+services:
+  postgres:
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - checkout-lab_database:/var/lib/postgresql/data
+
+  migrate:
+    environment:
+      DATABASE_URL: postgresql://checkout:${DB_PASSWORD}@postgres:5432/${DB_NAME}
+
+  api1:
+    environment:
+      DATABASE_URL: postgresql://checkout:${DB_PASSWORD}@postgres:5432/${DB_NAME}
+      NODE_OPTIONS: --max-old-space-size=192
+
+  api2:
+    environment:
+      DATABASE_URL: postgresql://checkout:${DB_PASSWORD}@postgres:5432/${DB_NAME}
+      NODE_OPTIONS: --max-old-space-size=192
+
+  proxy:
+    ports:
+      - 127.0.0.1:8080:80
+
+volumes:
+  checkout-lab_database:
+    external: true

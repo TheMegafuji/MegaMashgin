@@ -1,0 +1,51 @@
+{
+  "startedAt": "2026-09-22T06:45:43.107Z",
+  "finishedAt": "2026-09-22T06:46:03.113Z",
+  "node": "v24.18.0",
+  "platform": "win32",
+  "sourceFingerprint": "08f387580eafd3e9dcbe67df65846359f41d9840853468a37bfc4e84e58f6fd1",
+  "ok": true,
+  "steps": [
+    {
+      "name": "format",
+      "exitCode": 0,
+      "durationMs": 3098
+    },
+    {
+      "name": "architecture",
+      "exitCode": 0,
+      "durationMs": 97
+    },
+    {
+      "name": "api-contract",
+      "exitCode": 0,
+      "durationMs": 549
+    },
+    {
+      "name": "types",
+      "exitCode": 0,
+      "durationMs": 6638
+    },
+    {
+      "name": "unit",
+      "exitCode": 0,
+      "durationMs": 1076
+    },
+    {
+      "name": "integration",
+      "exitCode": 0,
+      "durationMs": 4623
+    },
+    {
+      "name": "server-build",
+      "exitCode": 0,
+      "durationMs": 2701
+    },
+    {
+      "name": "web-build",
+      "exitCode": 0,
+      "durationMs": 1219
+    }
+  ],
+  "note": "Browser and container checks are separate."
+}

@@ -1,0 +1,9 @@
+Initial_docs
+.git
+node_modules
+dist
+artifacts
+playwright-report
+test-results
+.env
+.env.*

@@ -1,0 +1,30 @@
+name: megafuji-checkout-dev
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      { POSTGRES_USER: checkout, POSTGRES_PASSWORD: local-demo-only, POSTGRES_DB: checkout }
+    ports: ['127.0.0.1:55542:5432']
+    volumes: ['dev-data:/var/lib/postgresql/data']
+    healthcheck:
+      {
+        test: ['CMD-SHELL', 'pg_isready -U checkout -d checkout'],
+        interval: 2s,
+        timeout: 3s,
+        retries: 20,
+      }
+  postgres-test:
+    image: postgres:17-alpine
+    environment:
+      { POSTGRES_USER: checkout, POSTGRES_PASSWORD: local-test-only, POSTGRES_DB: checkout_test }
+    ports: ['127.0.0.1:55543:5432']
+    tmpfs: ['/var/lib/postgresql/data']
+    healthcheck:
+      {
+        test: ['CMD-SHELL', 'pg_isready -U checkout -d checkout_test'],
+        interval: 2s,
+        timeout: 3s,
+        retries: 20,
+      }
+volumes:
+  dev-data:

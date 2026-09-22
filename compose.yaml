@@ -1,0 +1,87 @@
+name: megafuji-checkout
+x-api: &api
+  image: megafuji-checkout:local
+  build: .
+  init: true
+  restart: unless-stopped
+  environment: &api-env
+    DATABASE_URL: postgresql://checkout:${DB_PASSWORD:-local-compose-only}@postgres:5432/checkout
+    HOST: 0.0.0.0
+    PORT: 3190
+    PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:-http://localhost:8090}
+    GAME_ORIGINS: ${GAME_ORIGINS:-http://localhost:5180,http://127.0.0.1:5180,http://localhost:4180,http://127.0.0.1:4180,http://localhost:4181,http://127.0.0.1:4181}
+    GAME_SESSIONS_LIMIT: ${GAME_SESSIONS_LIMIT:-15000}
+    GAME_SESSIONS_GLOBAL_LIMIT: ${GAME_SESSIONS_GLOBAL_LIMIT:-15000}
+    GAME_ORDERS_LIMIT: ${GAME_ORDERS_LIMIT:-1800}
+    RELEASE: ${RELEASE:-local}
+    TYPESAFE_API_KEY: ${TYPESAFE_API_KEY:-}
+    TYPESAFE_MAX_CALLS_PER_DAY: ${TYPESAFE_MAX_CALLS_PER_DAY:-100}
+    TYPESAFE_TIMEOUT_MS: ${TYPESAFE_TIMEOUT_MS:-4000}
+  depends_on:
+    migrate: { condition: service_completed_successfully }
+  healthcheck:
+    test:
+      [
+        'CMD',
+        'node',
+        '-e',
+        "fetch('http://127.0.0.1:3190/health/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+      ]
+    interval: 5s
+    timeout: 4s
+    retries: 15
+  security_opt: ['no-new-privileges:true']
+  cap_drop: ['ALL']
+  read_only: true
+  tmpfs: ['/tmp']
+services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: checkout
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-local-compose-only}
+      POSTGRES_DB: checkout
+    volumes: ['checkout-data:/var/lib/postgresql/data']
+    healthcheck:
+      {
+        test: ['CMD-SHELL', 'pg_isready -U checkout -d checkout'],
+        interval: 3s,
+        timeout: 3s,
+        retries: 20,
+      }
+  migrate:
+    image: megafuji-checkout:local
+    build: .
+    command: ['node', 'dist/server/migrate.js']
+    environment:
+      DATABASE_URL: postgresql://checkout:${DB_PASSWORD:-local-compose-only}@postgres:5432/checkout
+    depends_on:
+      postgres: { condition: service_healthy }
+  api1:
+    <<: *api
+    environment:
+      <<: *api-env
+      INSTANCE_ID: api-1
+  api2:
+    <<: *api
+    environment:
+      <<: *api-env
+      INSTANCE_ID: api-2
+  proxy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports: ['127.0.0.1:${WEB_PORT:-8090}:80']
+    volumes: ['./infra/Caddyfile:/etc/caddy/Caddyfile:ro']
+    depends_on:
+      api1: { condition: service_healthy }
+      api2: { condition: service_healthy }
+    healthcheck:
+      {
+        test: ['CMD-SHELL', 'wget -q -O /dev/null http://127.0.0.1/health/ready'],
+        interval: 5s,
+        timeout: 3s,
+        retries: 15,
+      }
+volumes:
+  checkout-data:

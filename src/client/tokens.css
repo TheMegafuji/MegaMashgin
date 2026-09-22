@@ -1,0 +1,11 @@
+:root {
+  --paper: #f8f7ef;
+  --ink: #203d30;
+  --forest: #244b39;
+  --muted: #64705e;
+  --line: #e4e5d8;
+  --sage: #e8edde;
+  --body: 'Segoe UI', Arial, sans-serif;
+  --display: Georgia, 'Times New Roman', serif;
+  color-scheme: light;
+}

@@ -1,0 +1,136 @@
+{
+  "recordedAt": "2026-09-22T00:01:50.269608+00:00",
+  "scope": "brand, open food art, warm-card vapor, category sound and press/SEO delivery",
+  "specificationCommit": "c217680",
+  "sourceFingerprint": "5dd928b4e19057a202ebbcade71006edab6ec359bb27c2a9975c1571b77cf2f9",
+  "verification": {
+    "startedAt": "2026-09-21T23:48:31.846Z",
+    "finishedAt": "2026-09-21T23:48:45.157Z",
+    "node": "v24.18.0",
+    "platform": "win32",
+    "sourceFingerprint": "5dd928b4e19057a202ebbcade71006edab6ec359bb27c2a9975c1571b77cf2f9",
+    "ok": true,
+    "steps": [
+      {
+        "name": "format",
+        "exitCode": 0,
+        "durationMs": 2125
+      },
+      {
+        "name": "architecture",
+        "exitCode": 0,
+        "durationMs": 84
+      },
+      {
+        "name": "api-contract",
+        "exitCode": 0,
+        "durationMs": 254
+      },
+      {
+        "name": "types",
+        "exitCode": 0,
+        "durationMs": 3326
+      },
+      {
+        "name": "unit",
+        "exitCode": 0,
+        "durationMs": 911
+      },
+      {
+        "name": "integration",
+        "exitCode": 0,
+        "durationMs": 3355
+      },
+      {
+        "name": "server-build",
+        "exitCode": 0,
+        "durationMs": 2135
+      },
+      {
+        "name": "web-build",
+        "exitCode": 0,
+        "durationMs": 1115
+      }
+    ],
+    "note": "Browser and container checks are separate."
+  },
+  "tests": {
+    "unit": {
+      "passed": 15
+    },
+    "postgresqlIntegration": {
+      "passed": 27
+    },
+    "browser": {
+      "target": "http://127.0.0.1:8090",
+      "stats": {
+        "startTime": "2026-09-21T23:49:44.721Z",
+        "duration": 39154.657,
+        "expected": 20,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    "totalPassed": 62
+  },
+  "traceability": {
+    "specificationIds": 35,
+    "testReferences": 76
+  },
+  "compose": {
+    "startedAt": "2026-09-21T23:50:52.073Z",
+    "finishedAt": "2026-09-21T23:50:54.858Z",
+    "ok": true,
+    "concurrentAttempts": 20,
+    "created": 1,
+    "replayed": 19,
+    "instances": ["api-1", "api-2"],
+    "restartVerified": true
+  },
+  "publishing": {
+    "actualBuiltHtmlChecked": true,
+    "canonicalFromConfiguredHttpsOrigin": true,
+    "untrustedHostExcluded": true,
+    "localNoindex": true,
+    "pressDownloadPassed": true,
+    "threeAbsentFromRuntime": true
+  },
+  "artwork": {
+    "kenneyFoodKitVersion": "2.0",
+    "openModels": 20,
+    "license": "CC0-1.0",
+    "originalNewDrinkSVGs": 8,
+    "socialPngSizes": ["1200x630", "1080x1080", "1600x900"]
+  },
+  "jevLive": {
+    "ok": true,
+    "report": "jev-live.json",
+    "startedAt": "2026-09-21T23:59:50.825Z",
+    "finishedAt": "2026-09-21T23:59:54.762Z",
+    "passed": 7,
+    "total": 7,
+    "providerAttempts": 7,
+    "inputTokens": 46086,
+    "estimatedInputCostUsd": 0.0019356120000000002,
+    "costNote": "Estimate uses the documented model rate, not an invoice.",
+    "browserValidated": true,
+    "browserProviderMocked": false,
+    "browserQuery": "algo salgado e crocante para comer",
+    "browserResultFromRealProviderCache": true,
+    "selectedProductAddedToCart": "sea-salt-chips",
+    "pageErrors": 0,
+    "previousFailureReport": "jev-auth-failure.json"
+  },
+  "notVerified": [
+    "subjective loudness on user speakers",
+    "public-domain deployment or search indexing",
+    "remote CI",
+    "Oracle deployment",
+    "ARM64 execution",
+    "independent review",
+    "backup restore",
+    "load capacity",
+    "host-level high availability"
+  ]
+}

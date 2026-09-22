@@ -1,0 +1,11 @@
+Initial_docs
+node_modules
+dist
+artifacts
+playwright-report
+test-results
+package-lock.json
+docs/api.openapi.json
+
+# Preserve byte-identical imported test evidence.
+docs/evidence/remote/*.json

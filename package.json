@@ -1,0 +1,62 @@
+{
+  "name": "megafuji-checkout",
+  "version": "1.2.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:api": "node --env-file-if-exists=.env --import tsx --watch src/server/main.ts",
+    "dev:web": "vite --host 127.0.0.1 --port 5190",
+    "db:up": "docker compose -f compose.dev.yaml up -d --wait",
+    "db:down": "docker compose -f compose.dev.yaml down",
+    "db:migrate": "node --env-file-if-exists=.env --import tsx src/server/migrate.ts",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check:architecture": "node scripts/check-architecture.mjs",
+    "test": "vitest run --config vitest.config.ts",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "test:e2e": "playwright test",
+    "build": "tsc -p tsconfig.server.json && vite build",
+    "start": "node --env-file-if-exists=.env dist/server/main.js",
+    "verify": "node scripts/verify.mjs",
+    "demo:check": "node scripts/demo-check.mjs",
+    "api:docs": "node --import tsx scripts/openapi.ts",
+    "test:e2e:serve": "node scripts/e2e-server.mjs",
+    "db:prune": "node --env-file-if-exists=.env --import tsx scripts/prune.ts",
+    "test:jev:live": "node scripts/jev-eval.mjs --live",
+    "art:render": "node scripts/render-open-art.mjs && node scripts/drink-artwork.mjs",
+    "brand:build": "node scripts/brand-assets.mjs && python scripts/package-brand.py",
+    "pretest:e2e:serve": "npm run build",
+    "build:web": "vite build && node --import tsx scripts/build-web.ts"
+  },
+  "dependencies": {
+    "@fastify/cookie": "11.1.2",
+    "@fastify/helmet": "13.1.1",
+    "@fastify/static": "10.1.4",
+    "fastify": "5.12.5",
+    "lucide-react": "1.47.0",
+    "pg": "8.23.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.63.0",
+    "@types/node": "24.13.6",
+    "@types/pg": "8.23.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.1",
+    "prettier": "3.9.8",
+    "three": "0.186.0",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3",
+    "vite": "8.3.0",
+    "vitest": "5.0.1"
+  }
+}

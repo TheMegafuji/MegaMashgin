@@ -1,0 +1,14 @@
+{
+  auto_https off
+  admin off
+}
+:80 {
+  encode zstd gzip
+  reverse_proxy api1:3190 api2:3190 {
+    lb_policy round_robin
+    health_uri /health/ready
+    health_interval 5s
+    health_timeout 2s
+    fail_duration 5s
+  }
+}

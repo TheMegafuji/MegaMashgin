@@ -1,0 +1,94 @@
+{
+  "recordedAt": "2026-09-21T20:08:57.919Z",
+  "implementationCommit": "e1ba8af",
+  "sourceFingerprint": "21984b123a9e058467ca94a94b22117dfc549947b2cd56a59876d40feaa4fd7b",
+  "verification": {
+    "startedAt": "2026-09-21T20:07:37.082Z",
+    "finishedAt": "2026-09-21T20:07:48.373Z",
+    "node": "v24.18.0",
+    "platform": "win32",
+    "sourceFingerprint": "21984b123a9e058467ca94a94b22117dfc549947b2cd56a59876d40feaa4fd7b",
+    "ok": true,
+    "steps": [
+      {
+        "name": "format",
+        "exitCode": 0,
+        "durationMs": 1167
+      },
+      {
+        "name": "architecture",
+        "exitCode": 0,
+        "durationMs": 73
+      },
+      {
+        "name": "api-contract",
+        "exitCode": 0,
+        "durationMs": 463
+      },
+      {
+        "name": "types",
+        "exitCode": 0,
+        "durationMs": 3881
+      },
+      {
+        "name": "unit",
+        "exitCode": 0,
+        "durationMs": 1049
+      },
+      {
+        "name": "integration",
+        "exitCode": 0,
+        "durationMs": 1674
+      },
+      {
+        "name": "server-build",
+        "exitCode": 0,
+        "durationMs": 2057
+      },
+      {
+        "name": "web-build",
+        "exitCode": 0,
+        "durationMs": 922
+      }
+    ],
+    "note": "Browser and container checks are separate."
+  },
+  "tests": {
+    "unit": {
+      "passed": 7
+    },
+    "postgresqlIntegration": {
+      "passed": 12
+    },
+    "browser": {
+      "target": "http://127.0.0.1:8090",
+      "stats": {
+        "startTime": "2026-09-21T20:08:58.883Z",
+        "duration": 9826.316,
+        "expected": 11,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    }
+  },
+  "compose": {
+    "startedAt": "2026-09-21T20:08:55.515Z",
+    "finishedAt": "2026-09-21T20:08:57.919Z",
+    "ok": true,
+    "concurrentAttempts": 20,
+    "created": 1,
+    "replayed": 19,
+    "instances": ["api-1", "api-2"],
+    "restartVerified": true
+  },
+  "notVerified": [
+    "remote CI",
+    "Oracle deployment",
+    "ARM64 execution",
+    "independent review",
+    "backup restore",
+    "load capacity",
+    "host-level high availability"
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-22T06:37:00Z",
+  "target": {
+    "host": "147.15.78.236",
+    "architecture": "linux/arm64",
+    "publicOrigin": "https://checkout-lab.147-15-78-236.sslip.io",
+    "releaseId": "r20260922t062903z-markettycoon",
+    "releasePointer": "/opt/checkout-lab/current",
+    "proxyBinding": "127.0.0.1:8080",
+    "publicPortsOwnedBy": "host-nginx"
+  },
+  "source": {
+    "gitHead": "e5b6c6d14f82380339a342dd5b16773cc2ae093e",
+    "releaseWorkingTreeDiffHash": "6278fb1b10c5ddd5d21fed05d094163ba73c56f6",
+    "builtFromCleanCommitOnly": false,
+    "dockerfile": "Dockerfile",
+    "composeOverlay": "infra/compose.ampere.yaml"
+  },
+  "image": {
+    "localTag": "megafuji-checkout:local",
+    "imageId": "sha256:6c3b7c6ca322005d376b5a7d3d86ccd7fcf191d027a189252fd3f8f704ba21c0",
+    "architecture": "arm64",
+    "os": "linux",
+    "builtAt": "2026-09-22T03:32:20.029295883-03:00"
+  },
+  "services": {
+    "api1": "healthy",
+    "api2": "healthy",
+    "postgres": "healthy",
+    "proxy": "healthy",
+    "unrelatedAiNegociacaoPreserved": true
+  },
+  "publicChecks": {
+    "live": 200,
+    "ready": 200,
+    "menu": 200,
+    "menuProductCount": 76,
+    "gameOrigin": "http://localhost:5180",
+    "session": 201,
+    "order": 201,
+    "exactReplay": 200,
+    "changedBodySameKey": 409,
+    "sameReceiptOnReplay": true,
+    "accessControlAllowOrigin": "http://localhost:5180",
+    "visitorCookiesSentToGameProfile": false
+  },
+  "database": {
+    "activeDatabase": "checkout_current",
+    "currentSmokeSessions": 1,
+    "currentSmokeOrders": 1,
+    "historicalDatabasePreserved": true,
+    "historicalDatabaseChanged": false
+  },
+  "rollback": {
+    "backupPath": "/opt/checkout-lab/shared/backups/checkout-20260922T062843Z-pre-markettycoon.dump",
+    "backupBytes": 21378,
+    "backupMode": "600",
+    "previousReleasePath": "/opt/checkout-lab/releases/pre-markettycoon-20260922T062843Z",
+    "previousEnvironmentPath": "/opt/checkout-lab/shared/.env.rollback-20260922T062843Z"
+  },
+  "security": {
+    "gameOrigins": [
+      "http://localhost:5180",
+      "http://127.0.0.1:5180",
+      "http://localhost:4180",
+      "http://127.0.0.1:4180",
+      "http://localhost:4181",
+      "http://127.0.0.1:4181"
+    ],
+    "gameCredentialsMode": "anonymous-bearer-no-cookies",
+    "jevConfigured": false,
+    "providerCallsForDeployment": 0,
+    "unrelatedNginxRoutesChanged": false
+  },
+  "limits": {
+    "gameSessionsPerIpPer10Minutes": 15000,
+    "gameSessionsGlobalPer10Minutes": 15000,
+    "gameOrdersPerMinute": 1800,
+    "ordinaryCheckoutLimitsUnchanged": true
+  },
+  "lostResponseRecovery": {
+    "deploymentSmoke": "not_run",
+    "testOnlyServerFaultHookUsed": false,
+    "separateBrowserVerification": "tracked_by_game_browser_gate"
+  }
+}

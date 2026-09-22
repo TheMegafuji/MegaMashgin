@@ -1,0 +1,34 @@
+[
+  {
+    "path": "scripts/jev_debug.py",
+    "files": 1,
+    "bytes": 14537.0,
+    "reason": "Superseded auth diagnostic, temporary implementation script or reproducible browser cache"
+  },
+  {
+    "path": "artifacts/frontend-batch.js",
+    "files": 1,
+    "bytes": 43087.0,
+    "reason": "Superseded auth diagnostic, temporary implementation script or reproducible browser cache"
+  },
+  {
+    "path": "playwright-report",
+    "files": 1,
+    "bytes": 546871.0,
+    "reason": "Superseded auth diagnostic, temporary implementation script or reproducible browser cache"
+  },
+  {
+    "path": "test-results",
+    "files": 1,
+    "bytes": 45.0,
+    "reason": "Superseded auth diagnostic, temporary implementation script or reproducible browser cache"
+  },
+  {
+    "path": "Initial_docs/*",
+    "files": 7956,
+    "bytes": null,
+    "approximateMiBBefore": 144.6,
+    "reason": "Historical prototype contents removed after deployment replacement; empty directory remains locked as the active desktop workspace",
+    "remainingEntries": 0
+  }
+]

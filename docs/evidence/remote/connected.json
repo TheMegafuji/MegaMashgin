@@ -1,0 +1,14 @@
+{
+  "testedAt": "2026-09-22T06:49:45.132Z",
+  "gameUrl": "http://127.0.0.1:5180",
+  "apiUrl": "https://checkout-lab.147-15-78-236.sslip.io",
+  "ordersCreated": 1,
+  "promotedRecovery": true,
+  "orderRequests": 2,
+  "sameIntentOnRetry": true,
+  "confirmedBeforeInterruptedResponse": true,
+  "receiptId": "d0d085ce-d993-4b37-87c7-f0eb25e64530",
+  "totalCents": 103,
+  "gamePaid": 1,
+  "trace": " PURCHASE TRACE\n×\n1 confirmed\n0 pending\nRetry pending\n03:49:44\nShopper #1\nconfirmed\n83 ms\nConfirmed receipt · MF-D0D085CE · api-1\nd0d085ce-d993-4b37-87c7-f0eb25e64530\n03:49:44\nShopper #1\n200\n83 ms\nORDER · response · 436cbacb · api-1\n03:49:44\nConnection\n200\n162 ms\nMENU · response · d1fe12b6 · api-2\nReady\nHTTP times are real. Game speed is simulated. New purchases are paced across the network; pending intentions recover automatically."
+}

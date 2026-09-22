@@ -1,0 +1,1 @@
+ALTER TABLE customer_sessions ADD COLUMN game_profile boolean NOT NULL DEFAULT false;

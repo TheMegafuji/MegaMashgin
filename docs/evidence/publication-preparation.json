@@ -1,0 +1,58 @@
+{
+  "startedAt": "2026-09-22T15:39:56.708Z",
+  "finishedAt": "2026-09-22T15:40:10.719Z",
+  "node": "v24.18.0",
+  "platform": "win32",
+  "sourceFingerprint": "0e0d5bc3f6ea63192970cc454e654ff65baf720ca6c2f687f6b962257118c877",
+  "ok": true,
+  "steps": [
+    {
+      "name": "format",
+      "exitCode": 0,
+      "durationMs": 2165
+    },
+    {
+      "name": "architecture",
+      "exitCode": 0,
+      "durationMs": 70
+    },
+    {
+      "name": "api-contract",
+      "exitCode": 0,
+      "durationMs": 239
+    },
+    {
+      "name": "types",
+      "exitCode": 0,
+      "durationMs": 3845
+    },
+    {
+      "name": "unit",
+      "exitCode": 0,
+      "durationMs": 957
+    },
+    {
+      "name": "integration",
+      "exitCode": 0,
+      "durationMs": 3661
+    },
+    {
+      "name": "server-build",
+      "exitCode": 0,
+      "durationMs": 2090
+    },
+    {
+      "name": "web-build",
+      "exitCode": 0,
+      "durationMs": 981
+    }
+  ],
+  "note": "Browser and container checks are separate.",
+  "scope": "Local frontend publication preparation. No Vercel deploy, Oracle origin change, or database migration.",
+  "buildWeb": "npm run build:web passed; current local output is noindex without a configured publication origin",
+  "files": {
+    "vercel.json": "92bddffe5dfa08e81d3c7ef59a5197160b1ca091f9363241853dc645a22fc9e6",
+    "scripts/build-web.ts": "610ab0e52e6de9fe1c6a44e2ef77f48a4e77394756e64791c309f4cbf1e6153b",
+    "package.json": "dac0d31ffd581d407468fd144d432717774410800d4d1b3206657d459f116f0f"
+  }
+}

@@ -1,0 +1,844 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Megafuji Checkout",
+    "version": "1.1.0",
+    "description": "Synthetic checkout. One purchase per customer session. Money is integer USD cents. Repeat the same intent/key after uncertain responses. Combined per-product quantities are limited to 10; total cart units to 40. No payment secrets accepted."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8090"
+    }
+  ],
+  "paths": {
+    "/api/visitor": {
+      "post": {
+        "summary": "Create or restore a 30-day anonymous visitor; sets an opaque HttpOnly cookie",
+        "responses": {
+          "200": {
+            "description": "Public visitor UUID and expiry, never a credential",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Visitor"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Shared demo admission quota exhausted"
+          }
+        }
+      }
+    },
+    "/api/visitor/forget": {
+      "post": {
+        "summary": "Revoke the visitor capability and clear its cookie",
+        "security": [
+          {
+            "visitorCookie": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Visitor revoked"
+          },
+          "401": {
+            "description": "Session token missing or invalid"
+          }
+        }
+      }
+    },
+    "/api/visitor/orders": {
+      "get": {
+        "summary": "Paginated history across this visitor-owned purchase sessions",
+        "security": [
+          {
+            "visitorCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Up to ten receipts and a next cursor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/History"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Session token missing or invalid"
+          }
+        }
+      }
+    },
+    "/api/visitor/orders/{id}": {
+      "get": {
+        "summary": "Retrieve only this visitor-owned order",
+        "security": [
+          {
+            "visitorCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Receipt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Receipt"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Session token missing or invalid"
+          },
+          "404": {
+            "description": "Order not owned by this visitor"
+          }
+        }
+      }
+    },
+    "/api/discovery": {
+      "post": {
+        "summary": "Optional Jev semantic matches, with shared cache and quotas; never changes a purchase",
+        "security": [
+          {
+            "visitorCookie": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SuggestionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Typed result, including graceful unavailable/limited/pending states",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Suggestion"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Strict request validation failed"
+          },
+          "401": {
+            "description": "Session token missing or invalid"
+          }
+        }
+      }
+    },
+    "/api/menu": {
+      "get": {
+        "summary": "Read current menu and revision",
+        "responses": {
+          "200": {
+            "description": "Menu",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Menu"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Temporary failure; preserve the intent and retry with the same key"
+          }
+        }
+      }
+    },
+    "/api/sessions": {
+      "post": {
+        "summary": "Create a 24-hour purchase session; binds to the visitor cookie when present",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Bearer capability; retain only for this customer",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Session"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Shared demo admission quota exhausted"
+          }
+        }
+      }
+    },
+    "/api/sessions/close": {
+      "post": {
+        "security": [
+          {
+            "sessionToken": []
+          }
+        ],
+        "summary": "End the customer session",
+        "responses": {
+          "204": {
+            "description": "Closed"
+          },
+          "401": {
+            "description": "Session token missing or invalid"
+          },
+          "410": {
+            "description": "Session closed or expired"
+          }
+        }
+      }
+    },
+    "/api/orders": {
+      "post": {
+        "security": [
+          {
+            "sessionToken": []
+          }
+        ],
+        "summary": "Commit a purchase or recover the same receipt",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Original order recovered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Receipt"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "New order committed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Receipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Strict request validation failed"
+          },
+          "401": {
+            "description": "Session token missing or invalid"
+          },
+          "409": {
+            "description": "Changed menu, unavailable item, conflicting intent or completed session; inspect error.code"
+          },
+          "410": {
+            "description": "Session closed or expired"
+          },
+          "429": {
+            "description": "Shared demo admission quota exhausted"
+          },
+          "503": {
+            "description": "Temporary failure; preserve the intent and retry with the same key"
+          }
+        }
+      }
+    },
+    "/api/orders/{id}": {
+      "get": {
+        "security": [
+          {
+            "sessionToken": []
+          }
+        ],
+        "summary": "Read an order belonging to this session",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Receipt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Receipt"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Session token missing or invalid"
+          },
+          "404": {
+            "description": "Not found for this session"
+          },
+          "410": {
+            "description": "Session closed or expired"
+          }
+        }
+      }
+    },
+    "/health/live": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Process responds"
+          }
+        }
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Database/schema reachable"
+          },
+          "503": {
+            "description": "Temporary failure; preserve the intent and retry with the same key"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "visitorCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "megafuji_visitor",
+        "description": "Opaque HttpOnly bearer capability; visitor UUID is not authentication."
+      },
+      "sessionToken": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Opaque 64-character purchase token. Visitor-bound sessions additionally require their matching visitor cookie; old anonymous sessions remain supported."
+      }
+    },
+    "schemas": {
+      "Visitor": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          },
+          "expiresAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expiresAt"
+        ],
+        "additionalProperties": false
+      },
+      "History": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "orders": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid",
+                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                },
+                "reference": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "const": "confirmed"
+                },
+                "currency": {
+                  "type": "string",
+                  "const": "USD"
+                },
+                "totalCents": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "paymentMethod": {
+                  "type": "string",
+                  "enum": [
+                    "demo-card",
+                    "demo-cash"
+                  ]
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "productId": {
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9-]{1,47}$"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "quantity": {
+                        "type": "integer",
+                        "exclusiveMinimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      "unitPriceCents": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      "lineTotalCents": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      }
+                    },
+                    "required": [
+                      "productId",
+                      "name",
+                      "quantity",
+                      "unitPriceCents",
+                      "lineTotalCents"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "id",
+                "reference",
+                "status",
+                "currency",
+                "totalCents",
+                "paymentMethod",
+                "createdAt",
+                "items"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "nextCursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "orders",
+          "nextCursor"
+        ],
+        "additionalProperties": false
+      },
+      "SuggestionRequest": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 120
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": false
+      },
+      "Suggestion": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "no-match",
+              "unavailable",
+              "limited",
+              "pending"
+            ]
+          },
+          "source": {
+            "type": "string",
+            "const": "jev"
+          },
+          "products": {
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "productId": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]{1,47}$"
+                },
+                "weight": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              },
+              "required": [
+                "productId",
+                "weight"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "matchEvidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "cached": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "status",
+          "source",
+          "products",
+          "cached"
+        ],
+        "additionalProperties": false
+      },
+      "Menu": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "revision": {
+            "type": "string",
+            "minLength": 64,
+            "maxLength": 64
+          },
+          "currency": {
+            "type": "string",
+            "const": "USD"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]{1,47}$"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "Snacks",
+                    "Sweet treats",
+                    "Bakery",
+                    "Drinks",
+                    "Coffee & cups",
+                    "Sandwiches",
+                    "Salads",
+                    "Hot food",
+                    "Fruit"
+                  ]
+                },
+                "priceCents": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "available": {
+                  "type": "boolean"
+                },
+                "image": {
+                  "type": "string"
+                },
+                "dietary": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "description",
+                "category",
+                "priceCents",
+                "available",
+                "image",
+                "dietary"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "revision",
+          "currency",
+          "products"
+        ],
+        "additionalProperties": false
+      },
+      "OrderRequest": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "items": {
+            "minItems": 1,
+            "maxItems": 40,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "productId": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]{1,47}$"
+                },
+                "quantity": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10
+                }
+              },
+              "required": [
+                "productId",
+                "quantity"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "payment": {
+            "type": "object",
+            "properties": {
+              "method": {
+                "type": "string",
+                "enum": [
+                  "demo-card",
+                  "demo-cash"
+                ]
+              }
+            },
+            "required": [
+              "method"
+            ],
+            "additionalProperties": false
+          },
+          "menuRevision": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "promotionProductIds": {
+            "maxItems": 9,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{1,47}$"
+            }
+          }
+        },
+        "required": [
+          "items",
+          "payment",
+          "menuRevision"
+        ],
+        "additionalProperties": false
+      },
+      "Receipt": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "const": "confirmed"
+          },
+          "currency": {
+            "type": "string",
+            "const": "USD"
+          },
+          "totalCents": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "paymentMethod": {
+            "type": "string",
+            "enum": [
+              "demo-card",
+              "demo-cash"
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "productId": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]{1,47}$"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "quantity": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "unitPriceCents": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "lineTotalCents": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "productId",
+                "name",
+                "quantity",
+                "unitPriceCents",
+                "lineTotalCents"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "id",
+          "reference",
+          "status",
+          "currency",
+          "totalCents",
+          "paymentMethod",
+          "createdAt",
+          "items"
+        ],
+        "additionalProperties": false
+      },
+      "Session": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "expiresAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "token",
+          "expiresAt"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+}

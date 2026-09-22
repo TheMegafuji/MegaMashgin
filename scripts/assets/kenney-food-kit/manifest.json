@@ -1,0 +1,95 @@
+{
+  "name": "Kenney Food Kit",
+  "version": "2.0",
+  "source": "https://kenney.nl/assets/food-kit",
+  "archiveSha256": "cdad90853682499b94c9fda2f87678b24bfd8f3264e0ed323f6b6a27fd7c6f6f",
+  "license": "CC0-1.0",
+  "models": [
+    {
+      "model": "apple.glb",
+      "sha256": "2a80ab65d5bc2cb4f2bca1e8176cbb591849a288596d4b2e76e411338761a526"
+    },
+    {
+      "model": "banana.glb",
+      "sha256": "67c90aa8bef35b8886d6b67c0c4c3249556e28176c893d451b95cd83a156908c"
+    },
+    {
+      "model": "burger.glb",
+      "sha256": "b982f15d980ef49f3aa295fda03b1926b0b9a29d3d000d139e111d734474c99b"
+    },
+    {
+      "model": "burger-cheese.glb",
+      "sha256": "1797e8031017d9d8ebdad93103f59e8ad56482b58665dcb2c6376172f997ef5b"
+    },
+    {
+      "model": "candy-bar-wrapper.glb",
+      "sha256": "e3ab321ae95ee32f51f2997283fab26cb4d20d85bed346762d8d7bcfdb7eda4b"
+    },
+    {
+      "model": "chocolate.glb",
+      "sha256": "40087c3e876830cfcc0a2fbd47f97d3727a4bef450689834f49d971406e4e80e"
+    },
+    {
+      "model": "chocolate-wrapper.glb",
+      "sha256": "9b64d2baccce76f9567dba15780d59d4378631acc200437e074b0498592cc3c7"
+    },
+    {
+      "model": "cookie-chocolate.glb",
+      "sha256": "bf7894020a6d0d0acd120a69d96a9088b226f5d557b7d7a3441e9fc8169d2fe6"
+    },
+    {
+      "model": "croissant.glb",
+      "sha256": "f2f8ee64d7850b262a6af2492cd042fa8eb6506cde49d439360ad1a3df48fe9e"
+    },
+    {
+      "model": "cup-coffee.glb",
+      "sha256": "d74652ad1821bc5dedf1b2e1deb4e0ca0c498aa73880e7df5b91e5e729af6f81"
+    },
+    {
+      "model": "cup-tea.glb",
+      "sha256": "c2d60aeca48197b75ddb9f1ba145bd5e9c9e66e720b8ab67947f0b2a49ee1edd"
+    },
+    {
+      "model": "donut.glb",
+      "sha256": "7dcd094f063efb215b2e1740c426f5b899776ce63e223ce1b1377af6c7d9ef2f"
+    },
+    {
+      "model": "hot-dog.glb",
+      "sha256": "9248794c75184c195d495d93281a756e850a0f299e9734ac2bd88aa900d720d6"
+    },
+    {
+      "model": "muffin.glb",
+      "sha256": "396184e9d82e79582858569d68ba5d05640838bc514e952556b9ee044a0e7f87"
+    },
+    {
+      "model": "orange.glb",
+      "sha256": "a85c498e77fcab7da23386699d5af5cda1bcdf2c068b83b9db2fa2da48a06a30"
+    },
+    {
+      "model": "pear.glb",
+      "sha256": "436e8fdb9dc42100ab0135fc29e68f8609d5b3c5ac7d14062ed9aadfaef4d11f"
+    },
+    {
+      "model": "pizza.glb",
+      "sha256": "e98eda0a63421bc4e86f063ebd096a21e50254b169ddbba945d2473b59390951"
+    },
+    {
+      "model": "salad.glb",
+      "sha256": "efed57fb8b4263057e27137daf92171879f71a12036d18de58b357ccbac25aa6"
+    },
+    {
+      "model": "sandwich.glb",
+      "sha256": "eba221f9fc24bdaad73467e58ce9c09ec4134baeec01f178e7bb3e87ce3b941e"
+    },
+    {
+      "model": "sub.glb",
+      "sha256": "a927b74fa21cafd9828c9fa11b3b5072f5c887035dc992ef2feac26b44c960f1"
+    }
+  ],
+  "textures": [
+    {
+      "file": "Textures/colormap.png",
+      "sha256": "75baf74d9483a0fc56ac21ceba346fbe16fc24a2a1bf0524c53e6bbe802e1153"
+    }
+  ]
+}

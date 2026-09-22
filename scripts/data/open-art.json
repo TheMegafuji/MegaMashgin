@@ -1,0 +1,22 @@
+{
+  "butter-croissant": "croissant",
+  "chocolate-cookie": "cookie-chocolate",
+  "glazed-donut": "donut",
+  "blueberry-muffin": "muffin",
+  "milk-chocolate": "chocolate-wrapper",
+  "dark-chocolate": "chocolate",
+  "peanut-caramel": "candy-bar-wrapper",
+  "red-apple": "apple",
+  "banana": "banana",
+  "orange": "orange",
+  "pear": "pear",
+  "cheeseburger": "burger-cheese",
+  "veggie-burger": "burger",
+  "classic-hot-dog": "hot-dog",
+  "pepperoni-pizza": "pizza",
+  "house-coffee": "cup-coffee",
+  "english-tea": "cup-tea",
+  "caesar-bowl": "salad",
+  "tuna-sandwich": "sandwich",
+  "ham-swiss": "sub"
+}

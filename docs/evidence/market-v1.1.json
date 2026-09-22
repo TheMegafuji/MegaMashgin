@@ -1,0 +1,110 @@
+{
+  "recordedAt": "2026-09-21T21:42:39.430358+00:00",
+  "scope": "visitor identity, market and Jev discovery expansion",
+  "specificationCommit": "29fdb4c",
+  "sourceFingerprint": "edb6d08cdfa05eb87260149eafd7c8a1ec7981b8f6668e6edecf18002b6c6674",
+  "verification": {
+    "startedAt": "2026-09-21T21:33:07.356Z",
+    "finishedAt": "2026-09-21T21:33:22.380Z",
+    "node": "v24.18.0",
+    "platform": "win32",
+    "sourceFingerprint": "edb6d08cdfa05eb87260149eafd7c8a1ec7981b8f6668e6edecf18002b6c6674",
+    "ok": true,
+    "steps": [
+      {
+        "name": "format",
+        "exitCode": 0,
+        "durationMs": 1884
+      },
+      {
+        "name": "architecture",
+        "exitCode": 0,
+        "durationMs": 73
+      },
+      {
+        "name": "api-contract",
+        "exitCode": 0,
+        "durationMs": 245
+      },
+      {
+        "name": "types",
+        "exitCode": 0,
+        "durationMs": 4142
+      },
+      {
+        "name": "unit",
+        "exitCode": 0,
+        "durationMs": 1090
+      },
+      {
+        "name": "integration",
+        "exitCode": 0,
+        "durationMs": 3763
+      },
+      {
+        "name": "server-build",
+        "exitCode": 0,
+        "durationMs": 2566
+      },
+      {
+        "name": "web-build",
+        "exitCode": 0,
+        "durationMs": 1257
+      }
+    ],
+    "note": "Browser and container checks are separate."
+  },
+  "tests": {
+    "unit": {
+      "passed": 13
+    },
+    "postgresqlIntegration": {
+      "passed": 27
+    },
+    "browser": {
+      "target": "http://127.0.0.1:8090",
+      "stats": {
+        "startTime": "2026-09-21T21:36:00.620Z",
+        "duration": 37986.734000000004,
+        "expected": 17,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    "totalPassed": 57
+  },
+  "traceability": {
+    "specificationIds": 30,
+    "testReferences": 69
+  },
+  "compose": {
+    "startedAt": "2026-09-21T21:35:55.576Z",
+    "finishedAt": "2026-09-21T21:35:57.940Z",
+    "ok": true,
+    "concurrentAttempts": 20,
+    "created": 1,
+    "replayed": 19,
+    "instances": ["api-1", "api-2"],
+    "restartVerified": true
+  },
+  "jevLive": {
+    "ok": false,
+    "blockedBy": "TypeSafe HTTP 401 after supplied credential update",
+    "scenariosWithoutModelResults": 7,
+    "providerAttempts": 1,
+    "estimatedInputCostUsd": null,
+    "report": "jev-live.json",
+    "note": "Automated tests use controlled provider doubles; no live relevance result is claimed."
+  },
+  "notVerified": [
+    "live model relevance",
+    "remote CI",
+    "Oracle deployment",
+    "ARM64 execution",
+    "independent review",
+    "backup restore",
+    "load capacity",
+    "host-level high availability"
+  ]
+}

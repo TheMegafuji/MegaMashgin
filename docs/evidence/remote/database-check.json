@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-09-22T07:10:10.1999170Z",
+  "apiUrl": "https://checkout-lab.147-15-78-236.sslip.io",
+  "database": "checkout_current",
+  "source": "rate-80.json plus connected.json",
+  "rate": {
+    "receiptIdsListed": 87,
+    "receiptIdsFound": 87,
+    "receiptIdsUnique": 87,
+    "expectedTotalCentsPerOrder": 850,
+    "ordersAtExpectedTotal": 87,
+    "aggregateTotalCents": 73950
+  },
+  "connected": {
+    "receiptIdListed": true,
+    "receiptFound": 1,
+    "receiptUnique": 1,
+    "totalCents": 103
+  },
+  "credentialsPrinted": false
+}

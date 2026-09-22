@@ -1,0 +1,642 @@
+[
+  {
+    "id": "sea-salt-chips",
+    "name": "Sea salt chips",
+    "description": "Crispy kettle potato chips. 45 g bag.",
+    "priceCents": 249,
+    "kind": "bag",
+    "category": "Snacks",
+    "color": "#e68131",
+    "accent": "#f4cc68"
+  },
+  {
+    "id": "bbq-chips",
+    "name": "Smoky BBQ chips",
+    "description": "Smoky, savory potato chips. 45 g bag.",
+    "priceCents": 249,
+    "kind": "bag",
+    "category": "Snacks",
+    "color": "#e68131",
+    "accent": "#f2a4a0"
+  },
+  {
+    "id": "cheddar-popcorn",
+    "name": "Cheddar popcorn",
+    "description": "Air-popped corn with cheddar seasoning. 35 g bag.",
+    "priceCents": 299,
+    "kind": "bag",
+    "category": "Snacks",
+    "color": "#e68131",
+    "accent": "#afd5ba"
+  },
+  {
+    "id": "mini-pretzels",
+    "name": "Mini pretzels",
+    "description": "Crunchy, salted pretzel twists. 50 g bag.",
+    "priceCents": 229,
+    "kind": "bag",
+    "category": "Snacks",
+    "color": "#e68131",
+    "accent": "#a3cfe5"
+  },
+  {
+    "id": "roasted-almonds",
+    "name": "Roasted almonds",
+    "description": "Dry-roasted salted almonds. 40 g pouch.",
+    "priceCents": 349,
+    "kind": "bag",
+    "category": "Snacks",
+    "color": "#e68131",
+    "accent": "#f4cc68"
+  },
+  {
+    "id": "trail-mix",
+    "name": "Trail mix",
+    "description": "Peanuts, raisins and chocolate pieces. 50 g pouch.",
+    "priceCents": 329,
+    "kind": "bag",
+    "category": "Snacks",
+    "color": "#e68131",
+    "accent": "#f2a4a0"
+  },
+  {
+    "id": "beef-jerky",
+    "name": "Original beef jerky",
+    "description": "Smoky beef strips in a resealable 30 g pouch.",
+    "priceCents": 499,
+    "kind": "bag",
+    "category": "Snacks",
+    "color": "#e68131",
+    "accent": "#afd5ba"
+  },
+  {
+    "id": "tortilla-chips",
+    "name": "Tortilla chips",
+    "description": "Golden corn chips with a salty crunch. 45 g bag.",
+    "priceCents": 259,
+    "kind": "bag",
+    "category": "Snacks",
+    "color": "#e68131",
+    "accent": "#a3cfe5"
+  },
+  {
+    "id": "milk-chocolate",
+    "name": "Milk chocolate bar",
+    "description": "Smooth milk chocolate, individually wrapped. 45 g.",
+    "priceCents": 229,
+    "kind": "bar",
+    "category": "Sweet treats",
+    "color": "#9a689f",
+    "accent": "#f4cc68"
+  },
+  {
+    "id": "dark-chocolate",
+    "name": "Dark chocolate bar",
+    "description": "Rich 70% cocoa chocolate. 40 g bar.",
+    "priceCents": 279,
+    "kind": "bar",
+    "category": "Sweet treats",
+    "color": "#9a689f",
+    "accent": "#f2a4a0"
+  },
+  {
+    "id": "peanut-caramel",
+    "name": "Peanut caramel bar",
+    "description": "Roasted peanuts, soft caramel and chocolate. 50 g.",
+    "priceCents": 249,
+    "kind": "bar",
+    "category": "Sweet treats",
+    "color": "#9a689f",
+    "accent": "#afd5ba"
+  },
+  {
+    "id": "fruit-gummies",
+    "name": "Fruit gummies",
+    "description": "Colorful chewy fruit-flavored candy. 60 g pouch.",
+    "priceCents": 199,
+    "kind": "bag",
+    "category": "Sweet treats",
+    "color": "#9a689f",
+    "accent": "#a3cfe5"
+  },
+  {
+    "id": "mint-gum",
+    "name": "Fresh mint gum",
+    "description": "A pocket-size pack of mint chewing gum. 14 pieces.",
+    "priceCents": 189,
+    "kind": "box",
+    "category": "Sweet treats",
+    "color": "#9a689f",
+    "accent": "#f4cc68"
+  },
+  {
+    "id": "peppermint-mints",
+    "name": "Peppermint mints",
+    "description": "Crisp peppermint sweets in a small tin. 25 g.",
+    "priceCents": 199,
+    "kind": "box",
+    "category": "Sweet treats",
+    "color": "#9a689f",
+    "accent": "#f2a4a0"
+  },
+  {
+    "id": "blueberry-muffin",
+    "name": "Blueberry muffin",
+    "description": "A soft blueberry muffin in an individual wrapper.",
+    "priceCents": 349,
+    "kind": "muffin",
+    "category": "Bakery",
+    "color": "#bc803a",
+    "accent": "#f4cc68"
+  },
+  {
+    "id": "chocolate-muffin",
+    "name": "Chocolate muffin",
+    "description": "Double chocolate muffin, wrapped for the road.",
+    "priceCents": 349,
+    "kind": "muffin",
+    "category": "Bakery",
+    "color": "#bc803a",
+    "accent": "#f2a4a0"
+  },
+  {
+    "id": "glazed-donut",
+    "name": "Glazed donut",
+    "description": "A soft ring donut with a classic sugar glaze.",
+    "priceCents": 279,
+    "kind": "donut",
+    "category": "Bakery",
+    "color": "#bc803a",
+    "accent": "#afd5ba"
+  },
+  {
+    "id": "cinnamon-roll",
+    "name": "Cinnamon roll",
+    "description": "Swirled cinnamon pastry with vanilla icing.",
+    "priceCents": 399,
+    "kind": "roll",
+    "category": "Bakery",
+    "color": "#bc803a",
+    "accent": "#a3cfe5"
+  },
+  {
+    "id": "banana-bread",
+    "name": "Banana bread slice",
+    "description": "A thick, individually wrapped slice of banana loaf.",
+    "priceCents": 329,
+    "kind": "loaf",
+    "category": "Bakery",
+    "color": "#bc803a",
+    "accent": "#f4cc68"
+  },
+  {
+    "id": "cheese-danish",
+    "name": "Cheese danish",
+    "description": "Flaky pastry with a sweet cream cheese center.",
+    "priceCents": 379,
+    "kind": "roll",
+    "category": "Bakery",
+    "color": "#bc803a",
+    "accent": "#f2a4a0"
+  },
+  {
+    "id": "everything-bagel",
+    "name": "Everything bagel",
+    "description": "Toasted-style bagel with sesame, onion and poppy seeds.",
+    "priceCents": 299,
+    "kind": "donut",
+    "category": "Bakery",
+    "color": "#bc803a",
+    "accent": "#afd5ba"
+  },
+  {
+    "id": "classic-cola",
+    "name": "Classic cola",
+    "description": "Chilled cola in a 330 ml can.",
+    "priceCents": 249,
+    "kind": "can",
+    "category": "Drinks",
+    "color": "#5c84ae",
+    "accent": "#f4cc68"
+  },
+  {
+    "id": "zero-cola",
+    "name": "Zero sugar cola",
+    "description": "Zero-sugar cola in a chilled 330 ml can.",
+    "priceCents": 249,
+    "kind": "can",
+    "category": "Drinks",
+    "color": "#5c84ae",
+    "accent": "#f2a4a0"
+  },
+  {
+    "id": "citrus-energy",
+    "name": "Citrus energy drink",
+    "description": "Caffeinated citrus energy drink. 250 ml can.",
+    "priceCents": 349,
+    "kind": "can",
+    "category": "Drinks",
+    "color": "#5c84ae",
+    "accent": "#afd5ba"
+  },
+  {
+    "id": "orange-juice",
+    "name": "Orange juice",
+    "description": "Bright orange juice in a 300 ml bottle.",
+    "priceCents": 329,
+    "kind": "bottle",
+    "category": "Drinks",
+    "color": "#5c84ae",
+    "accent": "#a3cfe5"
+  },
+  {
+    "id": "sports-drink",
+    "name": "Blue sports drink",
+    "description": "Blue berry-flavored sports drink. 500 ml bottle.",
+    "priceCents": 299,
+    "kind": "bottle",
+    "category": "Drinks",
+    "color": "#5c84ae",
+    "accent": "#f4cc68"
+  },
+  {
+    "id": "still-water",
+    "name": "Still spring water",
+    "description": "Chilled spring water in a 500 ml bottle.",
+    "priceCents": 199,
+    "kind": "bottle",
+    "category": "Drinks",
+    "color": "#5c84ae",
+    "accent": "#f2a4a0"
+  },
+  {
+    "id": "zero-lager",
+    "name": "Zero-alcohol lager",
+    "description": "Crisp lager-style malt drink. 0.0% alcohol, 330 ml can.",
+    "priceCents": 399,
+    "kind": "can",
+    "category": "Drinks",
+    "color": "#5c84ae",
+    "accent": "#afd5ba"
+  },
+  {
+    "id": "berry-seltzer",
+    "name": "Berry seltzer",
+    "description": "Berry sparkling water. Zero alcohol, 330 ml can.",
+    "priceCents": 279,
+    "kind": "can",
+    "category": "Drinks",
+    "color": "#5c84ae",
+    "accent": "#a3cfe5"
+  },
+  {
+    "id": "house-coffee",
+    "name": "House coffee",
+    "description": "A smooth medium roast in a 12 oz takeaway cup.",
+    "priceCents": 279,
+    "kind": "cup",
+    "category": "Coffee & cups",
+    "color": "#807456",
+    "accent": "#f4cc68"
+  },
+  {
+    "id": "large-coffee",
+    "name": "Large house coffee",
+    "description": "Our medium roast in a 16 oz lidded cup.",
+    "priceCents": 329,
+    "kind": "cup",
+    "category": "Coffee & cups",
+    "color": "#807456",
+    "accent": "#f2a4a0"
+  },
+  {
+    "id": "cappuccino",
+    "name": "Cappuccino",
+    "description": "Espresso and foamed milk in a 12 oz cup.",
+    "priceCents": 429,
+    "kind": "cup",
+    "category": "Coffee & cups",
+    "color": "#807456",
+    "accent": "#afd5ba"
+  },
+  {
+    "id": "oat-latte",
+    "name": "Oat milk latte",
+    "description": "Espresso with oat drink in a 12 oz takeaway cup.",
+    "priceCents": 459,
+    "kind": "cup",
+    "category": "Coffee & cups",
+    "color": "#807456",
+    "accent": "#a3cfe5"
+  },
+  {
+    "id": "hot-chocolate",
+    "name": "Hot chocolate",
+    "description": "Rich cocoa with milk in a 12 oz cup.",
+    "priceCents": 399,
+    "kind": "cup",
+    "category": "Coffee & cups",
+    "color": "#807456",
+    "accent": "#f4cc68"
+  },
+  {
+    "id": "english-tea",
+    "name": "English breakfast tea",
+    "description": "Black tea in a 12 oz lidded cup.",
+    "priceCents": 249,
+    "kind": "cup",
+    "category": "Coffee & cups",
+    "color": "#807456",
+    "accent": "#f2a4a0"
+  },
+  {
+    "id": "iced-tea",
+    "name": "Lemon iced tea",
+    "description": "Chilled black tea with lemon in a 16 oz cup.",
+    "priceCents": 299,
+    "kind": "coldcup",
+    "category": "Coffee & cups",
+    "color": "#807456",
+    "accent": "#afd5ba"
+  },
+  {
+    "id": "fountain-lemonade",
+    "name": "Fountain lemonade",
+    "description": "Refreshing lemon soda in a 20 oz fountain cup.",
+    "priceCents": 279,
+    "kind": "coldcup",
+    "category": "Coffee & cups",
+    "color": "#807456",
+    "accent": "#a3cfe5"
+  },
+  {
+    "id": "turkey-wrap",
+    "name": "Turkey & cheddar wrap",
+    "description": "Turkey, cheddar and crisp lettuce in a wrapped tortilla.",
+    "priceCents": 799,
+    "kind": "wrap",
+    "category": "Sandwiches",
+    "color": "#648569",
+    "accent": "#f4cc68"
+  },
+  {
+    "id": "veggie-wrap",
+    "name": "Hummus veggie wrap",
+    "description": "Hummus, carrots and crisp greens in a soft tortilla.",
+    "priceCents": 749,
+    "kind": "wrap",
+    "category": "Sandwiches",
+    "color": "#648569",
+    "accent": "#f2a4a0"
+  },
+  {
+    "id": "ham-swiss",
+    "name": "Ham & Swiss sandwich",
+    "description": "Ham and Swiss cheese in a clear deli sandwich pack.",
+    "priceCents": 799,
+    "kind": "sandwich",
+    "category": "Sandwiches",
+    "color": "#648569",
+    "accent": "#afd5ba"
+  },
+  {
+    "id": "tuna-sandwich",
+    "name": "Tuna salad sandwich",
+    "description": "Tuna salad and leaves on sliced seeded bread.",
+    "priceCents": 779,
+    "kind": "sandwich",
+    "category": "Sandwiches",
+    "color": "#648569",
+    "accent": "#a3cfe5"
+  },
+  {
+    "id": "egg-sandwich",
+    "name": "Egg salad sandwich",
+    "description": "Creamy egg salad on soft bread, ready to go.",
+    "priceCents": 649,
+    "kind": "sandwich",
+    "category": "Sandwiches",
+    "color": "#648569",
+    "accent": "#f4cc68"
+  },
+  {
+    "id": "caesar-bowl",
+    "name": "Chicken Caesar bowl",
+    "description": "Chicken, romaine, croutons and Caesar dressing in a clear bowl.",
+    "priceCents": 1099,
+    "kind": "bowl",
+    "category": "Salads",
+    "color": "#7c9c68",
+    "accent": "#f4cc68"
+  },
+  {
+    "id": "quinoa-bowl",
+    "name": "Quinoa rainbow bowl",
+    "description": "Quinoa, roasted vegetables and chickpeas in a clear bowl.",
+    "priceCents": 999,
+    "kind": "bowl",
+    "category": "Salads",
+    "color": "#7c9c68",
+    "accent": "#f2a4a0"
+  },
+  {
+    "id": "greek-salad",
+    "name": "Greek salad bowl",
+    "description": "Tomato, cucumber, olives and feta in a grab-and-go bowl.",
+    "priceCents": 949,
+    "kind": "bowl",
+    "category": "Salads",
+    "color": "#7c9c68",
+    "accent": "#afd5ba"
+  },
+  {
+    "id": "pasta-salad",
+    "name": "Pesto pasta salad",
+    "description": "Pasta, basil pesto and cherry tomatoes in a deli tub.",
+    "priceCents": 849,
+    "kind": "bowl",
+    "category": "Salads",
+    "color": "#7c9c68",
+    "accent": "#a3cfe5"
+  },
+  {
+    "id": "california-roll",
+    "name": "California sushi roll",
+    "description": "Eight pieces of crab-style and avocado sushi in a clear tray.",
+    "priceCents": 999,
+    "kind": "sushi",
+    "category": "Salads",
+    "color": "#7c9c68",
+    "accent": "#f4cc68"
+  },
+  {
+    "id": "veggie-sushi",
+    "name": "Veggie sushi pack",
+    "description": "Eight cucumber, carrot and avocado rolls in a clear tray.",
+    "priceCents": 899,
+    "kind": "sushi",
+    "category": "Salads",
+    "color": "#7c9c68",
+    "accent": "#f2a4a0"
+  },
+  {
+    "id": "classic-hot-dog",
+    "name": "Classic hot dog",
+    "description": "A warm frankfurter in a soft bun with mustard.",
+    "priceCents": 499,
+    "kind": "hotdog",
+    "category": "Hot food",
+    "color": "#c87849",
+    "accent": "#f4cc68"
+  },
+  {
+    "id": "cheeseburger",
+    "name": "Classic cheeseburger",
+    "description": "Beef patty, melted cheese and pickles in a soft bun.",
+    "priceCents": 799,
+    "kind": "burger",
+    "category": "Hot food",
+    "color": "#c87849",
+    "accent": "#f2a4a0"
+  },
+  {
+    "id": "veggie-burger",
+    "name": "Veggie burger",
+    "description": "Vegetable patty, tomato and crisp leaves in a bun.",
+    "priceCents": 799,
+    "kind": "burger",
+    "category": "Hot food",
+    "color": "#c87849",
+    "accent": "#afd5ba"
+  },
+  {
+    "id": "cheese-pizza",
+    "name": "Cheese pizza slice",
+    "description": "A generous slice with tomato sauce and mozzarella.",
+    "priceCents": 449,
+    "kind": "pizza",
+    "category": "Hot food",
+    "color": "#c87849",
+    "accent": "#a3cfe5"
+  },
+  {
+    "id": "pepperoni-pizza",
+    "name": "Pepperoni pizza slice",
+    "description": "Mozzarella and pepperoni on a golden pizza slice.",
+    "priceCents": 499,
+    "kind": "pizza",
+    "category": "Hot food",
+    "color": "#c87849",
+    "accent": "#f4cc68"
+  },
+  {
+    "id": "tenders-fries",
+    "name": "Chicken tenders & fries",
+    "description": "Three chicken tenders with a side of golden fries.",
+    "priceCents": 1099,
+    "kind": "plate",
+    "category": "Hot food",
+    "color": "#c87849",
+    "accent": "#f2a4a0"
+  },
+  {
+    "id": "mac-cheese",
+    "name": "Mac & cheese bowl",
+    "description": "Creamy macaroni and cheese in a warm food bowl.",
+    "priceCents": 649,
+    "kind": "bowl",
+    "category": "Hot food",
+    "color": "#c87849",
+    "accent": "#afd5ba"
+  },
+  {
+    "id": "breakfast-burrito",
+    "name": "Breakfast burrito",
+    "description": "Scrambled eggs, potato and cheese in a warm tortilla.",
+    "priceCents": 749,
+    "kind": "wrap",
+    "category": "Hot food",
+    "color": "#c87849",
+    "accent": "#a3cfe5"
+  },
+  {
+    "id": "red-apple",
+    "name": "Crisp red apple",
+    "description": "One fresh whole red apple.",
+    "priceCents": 129,
+    "kind": "apple",
+    "category": "Fruit",
+    "color": "#91a858",
+    "accent": "#f4cc68"
+  },
+  {
+    "id": "green-apple",
+    "name": "Green apple",
+    "description": "One crisp, tart green apple.",
+    "priceCents": 129,
+    "kind": "apple",
+    "category": "Fruit",
+    "color": "#91a858",
+    "accent": "#f2a4a0"
+  },
+  {
+    "id": "banana",
+    "name": "Banana",
+    "description": "One fresh banana, ready for your next break.",
+    "priceCents": 99,
+    "kind": "banana",
+    "category": "Fruit",
+    "color": "#91a858",
+    "accent": "#afd5ba"
+  },
+  {
+    "id": "orange",
+    "name": "Sweet orange",
+    "description": "One whole orange with a bright citrus aroma.",
+    "priceCents": 139,
+    "kind": "orange",
+    "category": "Fruit",
+    "color": "#91a858",
+    "accent": "#a3cfe5"
+  },
+  {
+    "id": "pear",
+    "name": "Fresh pear",
+    "description": "One ripe green pear.",
+    "priceCents": 159,
+    "kind": "pear",
+    "category": "Fruit",
+    "color": "#91a858",
+    "accent": "#f4cc68"
+  },
+  {
+    "id": "grapes-cup",
+    "name": "Grape cup",
+    "description": "A clear 150 g cup of washed seedless grapes.",
+    "priceCents": 349,
+    "kind": "fruitcup",
+    "category": "Fruit",
+    "color": "#91a858",
+    "accent": "#f2a4a0"
+  },
+  {
+    "id": "watermelon-cup",
+    "name": "Watermelon cup",
+    "description": "Chilled watermelon pieces in a 180 g clear cup.",
+    "priceCents": 379,
+    "kind": "fruitcup",
+    "category": "Fruit",
+    "color": "#91a858",
+    "accent": "#afd5ba"
+  },
+  {
+    "id": "mixed-fruit",
+    "name": "Mixed fruit cup",
+    "description": "Melon, pineapple and grapes in a 180 g cup.",
+    "priceCents": 399,
+    "kind": "fruitcup",
+    "category": "Fruit",
+    "color": "#91a858",
+    "accent": "#a3cfe5"
+  }
+]
