@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import type { Menu } from '../shared/contracts.js';
-import type { Suggestion } from '../shared/discovery.js';
+import type { Menu } from '../../../shared/contracts.js';
+import type { Suggestion } from '../../../shared/discovery.js';
 
 export const JEV_MODEL = 'jev-1.13.0';
 export const JEV_POLICY = 'market-find-v1';

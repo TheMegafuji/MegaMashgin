@@ -3,8 +3,8 @@ import { readdir, readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import type { Pool } from 'pg';
-import { createPool, transaction } from './database.js';
 import { configuration } from './config.js';
+import { createPool, transaction } from './infrastructure/database.js';
 export async function migrate(pool: Pool) {
   await transaction(pool, async (db) => {
     await db.query('SELECT pg_advisory_xact_lock(772691)');

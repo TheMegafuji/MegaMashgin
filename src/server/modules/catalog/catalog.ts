@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import type { Pool, PoolClient } from 'pg';
-import type { Menu, Product } from '../shared/contracts.js';
+import type { Menu, Product } from '../../../shared/contracts.js';
 export async function readMenu(db: Pool | PoolClient): Promise<Menu> {
   const { rows } = await db.query(
     'SELECT id, name, description, category, price_cents, available, image, dietary FROM products ORDER BY position, id',

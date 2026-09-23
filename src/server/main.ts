@@ -1,7 +1,7 @@
 import { resolve } from 'node:path';
-import { configuration } from './config.js';
-import { createPool } from './database.js';
 import { buildApp } from './app.js';
+import { configuration } from './config.js';
+import { createPool } from './infrastructure/database.js';
 const config = configuration();
 const pool = createPool(config.DATABASE_URL);
 pool.on('error', (error) => console.error('Database pool error:', error.message));

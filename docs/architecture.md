@@ -47,3 +47,42 @@ The browser keeps a bearer session token and unfinished intent in sessionStorage
 ## Deliberate limits
 
 A single database/VM remains a shared failure point. Session storage is scoped to a tab and can be unavailable in restricted browsers; submission must not proceed unless recovery state can be saved. Session expiry limits the recovery window to 24 hours. No claim of million-order capacity is made.
+
+## Source organization
+
+The application is a modular monolith: one deployable API, with responsibilities
+separated by business capability. Replicas run the same application.
+
+```text
+src/client/
+  app/                 page composition
+  features/catalog/    menu, search, product cards and collections
+  features/checkout/   cart, review, confirmation and durable purchase state
+  features/history/    anonymous visitor and receipt history
+  audio/               optional sound feedback
+  components/          shared visual identity
+  lib/                 HTTP transport
+  styles/              visual layers and design tokens
+src/server/
+  app.ts               assemble the HTTP application
+  http/                route adapters, request security, errors and static pages
+  modules/catalog/     authoritative menu
+  modules/orders/      transactional purchase and receipt
+  modules/sessions/    purchase credentials and shared admission
+  modules/visitors/    browser identity and scoped history
+  modules/discovery/   optional catalog suggestions and provider adapter
+  infrastructure/      PostgreSQL connection and transaction helper
+src/shared/            transport schemas and pure shared rules
+```
+
+Client components use the checkout hook; the hook uses the HTTP adapter. HTTP
+routes validate transport inputs and call server modules. Modules own their SQL
+and transaction rules. We deliberately do not add empty controller/service/
+repository layers or a generic repository abstraction: there is one database and
+one purchase transaction. Shared contracts never import infrastructure.
+
+The original flat layout fitted the small initial checkout. The market expansion
+made navigation harder: App.tsx held several independent screens and app.ts mixed
+composition, security and endpoints. Those responsibilities now have named files.
+The refactor keeps API paths, database schema, transaction ordering and recovery
+semantics unchanged. Existing integration and browser scenarios verify behavior.

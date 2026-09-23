@@ -4,7 +4,7 @@ import {
   writeSaved,
   STORAGE_KEY,
   type SavedCheckout,
-} from '../../src/client/storage.js';
+} from '../../src/client/features/checkout/storage.js';
 const purchase: SavedCheckout = {
   version: 1,
   cart: [{ productId: 'pesto-focaccia', quantity: 1 }],

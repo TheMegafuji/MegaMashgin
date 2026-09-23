@@ -1,6 +1,6 @@
 import { resolve } from 'node:path';
 import { buildApp } from '../src/server/app.js';
-import { createPool } from '../src/server/database.js';
+import { createPool } from '../src/server/infrastructure/database.js';
 import { migrate } from '../src/server/migrate.js';
 import { testDatabaseUrl } from './helpers.js';
 const pool = createPool(testDatabaseUrl());

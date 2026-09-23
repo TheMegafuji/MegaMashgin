@@ -1,5 +1,9 @@
 import { describe, it, expect } from 'vitest';
-import { buildJevRequest, interpretJev, jevResponseSchema } from '../../src/server/jev.js';
+import {
+  buildJevRequest,
+  interpretJev,
+  jevResponseSchema,
+} from '../../src/server/modules/discovery/jev.js';
 import { localMatches } from '../../src/shared/discovery.js';
 import type { Menu } from '../../src/shared/contracts.js';
 const menu: Menu = {

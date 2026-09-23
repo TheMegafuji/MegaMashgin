@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { canonicalItems, money, orderRequestSchema } from '../../src/shared/contracts.js';
-import { hashIntent } from '../../src/server/orders.js';
+import { hashIntent } from '../../src/server/modules/orders/orders.js';
 const input = {
   items: [{ productId: 'pesto-focaccia', quantity: 2 }],
   payment: { method: 'demo-card' as const },

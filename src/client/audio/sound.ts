@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import type { Product } from '../shared/contracts.js';
+import type { Product } from '../../shared/contracts.js';
 
 export const SOUND_KEY = 'megafuji.cart-sound.v1';
 export const categoryVoices: Record<

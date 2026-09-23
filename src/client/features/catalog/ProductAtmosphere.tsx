@@ -1,5 +1,5 @@
 import { Flame } from 'lucide-react';
-import type { Product } from '../shared/contracts.js';
+import type { Product } from '../../../shared/contracts.js';
 const warmDrinks = new Set([
   'house-coffee',
   'large-coffee',

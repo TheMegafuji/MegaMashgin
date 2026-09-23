@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { ensureVisitor, forgetVisitor } from './api.js';
-import type { Visitor } from '../shared/discovery.js';
+import type { Visitor } from '../../../shared/discovery.js';
+import { ensureVisitor, forgetVisitor } from '../../lib/api.js';
 export function useVisitor() {
   const [visitor, setVisitor] = useState<Visitor | null>(null);
   const [error, setError] = useState(false);

@@ -1,19 +1,19 @@
 import { createHash, randomUUID } from 'node:crypto';
 import type { Pool } from 'pg';
-import type { Menu } from '../shared/contracts.js';
-import { normalizeQuery, suggestionSchema, type Suggestion } from '../shared/discovery.js';
-import { transaction } from './database.js';
-import { admit } from './sessions.js';
-import { ApiError } from './errors.js';
+import type { Menu } from '../../../shared/contracts.js';
+import { normalizeQuery, suggestionSchema, type Suggestion } from '../../../shared/discovery.js';
+import { ApiError } from '../../http/errors.js';
+import { transaction } from '../../infrastructure/database.js';
+import { admit } from '../sessions/sessions.js';
 import {
   buildJevRequest,
   httpJevProvider,
   interpretJev,
-  jevResponseSchema,
   JEV_MODEL,
   JEV_POLICY,
-  type JevProvider,
   JevHttpError,
+  jevResponseSchema,
+  type JevProvider,
 } from './jev.js';
 
 export type DiscoveryOptions = {

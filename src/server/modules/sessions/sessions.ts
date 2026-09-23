@@ -1,7 +1,7 @@
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
 import type { Pool, PoolClient } from 'pg';
-import { transaction } from './database.js';
-import { ApiError } from './errors.js';
+import { ApiError } from '../../http/errors.js';
+import { transaction } from '../../infrastructure/database.js';
 export const tokenHash = (token: string) => createHash('sha256').update(token).digest('hex');
 export function bearer(header?: string): string {
   const match = /^Bearer ([a-f0-9]{64})$/.exec(header ?? '');

@@ -1,8 +1,8 @@
+import { ArrowUpLeft, LoaderCircle, Search, Sparkles, X } from 'lucide-react';
 import { useEffect, useId, useRef, useState } from 'react';
-import { Search, Sparkles, LoaderCircle, ArrowUpLeft, X } from 'lucide-react';
-import { localMatches, type Suggestion } from '../shared/discovery.js';
-import { money, type Product } from '../shared/contracts.js';
-import { fetchSuggestions } from './api.js';
+import { money, type Product } from '../../../shared/contracts.js';
+import { localMatches, type Suggestion } from '../../../shared/discovery.js';
+import { fetchSuggestions } from '../../lib/api.js';
 
 export function SearchBox({
   products,

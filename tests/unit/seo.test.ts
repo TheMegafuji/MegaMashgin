@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { publicationOrigin, pageMetadata, robots, sitemap } from '../../src/server/seo.js';
+import { publicationOrigin, pageMetadata, robots, sitemap } from '../../src/server/http/seo.js';
 it('[OPS-04] local or invalid publication settings do not advertise a canonical public site', () => {
   const template = '<meta name="robots" content="noindex,follow" /><!-- public-metadata -->';
   for (const value of [

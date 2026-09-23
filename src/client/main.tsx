@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
-import { App } from './App.js';
-import './styles.css';
-import './market.css';
+import { App } from './app/App.js';
+import './styles/base.css';
+import './styles/market.css';
 createRoot(document.getElementById('root')!).render(<App />);
 
-import './brand.css';
+import './styles/brand.css';

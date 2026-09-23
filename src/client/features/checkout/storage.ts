@@ -1,10 +1,10 @@
 import { z } from 'zod';
 import {
   lineSchema,
+  MAX_CART_UNITS,
   orderRequestSchema,
   sessionSchema,
-  MAX_CART_UNITS,
-} from '../shared/contracts.js';
+} from '../../../shared/contracts.js';
 export const STORAGE_KEY = 'megafuji.checkout.v1';
 const savedSchema = z
   .object({

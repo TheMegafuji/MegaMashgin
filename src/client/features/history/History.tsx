@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
 import {
   ArrowRight,
   CheckCircle2,
@@ -8,9 +7,10 @@ import {
   Trash2,
   X,
 } from 'lucide-react';
-import { fetchHistory } from './api.js';
-import type { Visitor } from '../shared/discovery.js';
-import { money, type Receipt } from '../shared/contracts.js';
+import { useEffect, useRef, useState } from 'react';
+import { money, type Receipt } from '../../../shared/contracts.js';
+import type { Visitor } from '../../../shared/discovery.js';
+import { fetchHistory } from '../../lib/api.js';
 
 export function History({
   visitor,

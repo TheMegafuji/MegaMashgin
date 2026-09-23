@@ -1,6 +1,6 @@
 import { ArrowDown, ArrowUpRight, Check, Plus, Sparkles } from 'lucide-react';
-import type { Product } from '../shared/contracts.js';
-import { money } from '../shared/contracts.js';
+import type { Product } from '../../../shared/contracts.js';
+import { money } from '../../../shared/contracts.js';
 export const categories = [
   'All',
   'Snacks',

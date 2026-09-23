@@ -1,15 +1,15 @@
 import {
-  visitorSchema,
-  historySchema,
-  suggestionSchema,
-  type Visitor,
-} from '../shared/discovery.js';
-import {
   menuSchema,
   receiptSchema,
   sessionSchema,
   type OrderRequest,
-} from '../shared/contracts.js';
+} from '../../shared/contracts.js';
+import {
+  historySchema,
+  suggestionSchema,
+  visitorSchema,
+  type Visitor,
+} from '../../shared/discovery.js';
 export class ApiFailure extends Error {
   constructor(
     public readonly status: number,

@@ -1,5 +1,5 @@
-import pg from 'pg';
 import type { Pool, PoolClient } from 'pg';
+import pg from 'pg';
 export function createPool(connectionString: string): Pool {
   return new pg.Pool({
     connectionString,

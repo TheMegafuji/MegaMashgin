@@ -1,10 +1,10 @@
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import { randomUUID } from 'node:crypto';
 import { buildApp } from '../../src/server/app.js';
-import { createPool } from '../../src/server/database.js';
+import { createPool } from '../../src/server/infrastructure/database.js';
 import { migrate } from '../../src/server/migrate.js';
 import type { OrderRequest, Menu, Receipt } from '../../src/shared/contracts.js';
-import { tokenHash } from '../../src/server/sessions.js';
+import { tokenHash } from '../../src/server/modules/sessions/sessions.js';
 import { testDatabaseUrl } from '../helpers.js';
 
 const poolA = createPool(testDatabaseUrl());

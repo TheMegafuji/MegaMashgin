@@ -1,10 +1,10 @@
 import { createHash, randomUUID } from 'node:crypto';
 import type { Pool } from 'pg';
-import { canonicalItems, type OrderRequest, type Receipt } from '../shared/contracts.js';
-import { transaction } from './database.js';
-import { ApiError } from './errors.js';
-import { readMenu } from './catalog.js';
-import { admit, findSession } from './sessions.js';
+import { canonicalItems, type OrderRequest, type Receipt } from '../../../shared/contracts.js';
+import { ApiError } from '../../http/errors.js';
+import { transaction } from '../../infrastructure/database.js';
+import { readMenu } from '../catalog/catalog.js';
+import { admit, findSession } from '../sessions/sessions.js';
 
 export function hashIntent(input: OrderRequest) {
   const promotionProductIds = input.promotionProductIds?.length

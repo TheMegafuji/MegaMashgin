@@ -6,9 +6,9 @@ import {
   type Menu,
   type OrderRequest,
   type Receipt,
-} from '../shared/contracts.js';
-import { playCartSound } from './sound.js';
-import { ApiFailure, closeSession, createSession, fetchMenu, sendOrder } from './api.js';
+} from '../../../shared/contracts.js';
+import { playCartSound } from '../../audio/sound.js';
+import { ApiFailure, closeSession, createSession, fetchMenu, sendOrder } from '../../lib/api.js';
 import {
   emptyCheckout,
   readSaved,
@@ -239,3 +239,5 @@ export function useCheckout() {
     dismissMessage: () => setMessage(''),
   };
 }
+
+export type Checkout = ReturnType<typeof useCheckout>;

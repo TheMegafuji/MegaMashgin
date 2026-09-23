@@ -1,11 +1,11 @@
 import { beforeAll, beforeEach, afterAll, it, expect } from 'vitest';
 import { randomUUID } from 'node:crypto';
 import { buildApp } from '../../src/server/app.js';
-import { createPool } from '../../src/server/database.js';
+import { createPool } from '../../src/server/infrastructure/database.js';
 import { migrate } from '../../src/server/migrate.js';
 import { testDatabaseUrl } from '../helpers.js';
-import { tokenHash } from '../../src/server/sessions.js';
-import { JevHttpError, type JevProvider } from '../../src/server/jev.js';
+import { tokenHash } from '../../src/server/modules/sessions/sessions.js';
+import { JevHttpError, type JevProvider } from '../../src/server/modules/discovery/jev.js';
 import type { Menu } from '../../src/shared/contracts.js';
 
 const pool = createPool(testDatabaseUrl());

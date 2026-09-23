@@ -1,4 +1,4 @@
-import { createPool } from '../src/server/database.js';
+import { createPool } from '../src/server/infrastructure/database.js';
 import { configuration } from '../src/server/config.js';
 const pool = createPool(configuration().DATABASE_URL);
 try {
