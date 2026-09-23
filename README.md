@@ -12,6 +12,12 @@ Browse **76 products in nine categories**, find something with instant search or
 
 > Independent portfolio concept by Megafuji, inspired by Mashgin. Products and payments are fictional. The app never asks for a card number or CVV.
 
+## Video walkthrough
+
+[**Watch the project demo →**](docs/videos/megamashgin.mp4)
+
+A walkthrough of the checkout and the companion market game. [Download the MP4](docs/videos/megamashgin.mp4?raw=1) (21.4 MB).
+
 ## Try the complete product
 
 With **Docker and Docker Compose v2** using Linux containers:
