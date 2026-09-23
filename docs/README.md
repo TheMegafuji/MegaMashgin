@@ -16,7 +16,4 @@ Start with the [product README](../README.md) and [short walkthrough](market-tou
 
 The alternate game client is a separate project. Its remote API measurements needed for this review are copied unchanged into [remote evidence](evidence/remote/README.md), so this repository's documentation does not depend on a sibling directory. Screenshots are observations of the recorded versions, not a claim of continuous monitoring. Local test commands produce their detailed logs in the ignored `artifacts/` directory.
 
-[Public game and current API measurement](evidence/live-game/README.md) · [Short presentation guide in Portuguese](apresentacao.md).
-
-[Video recording guide in Portuguese](roteiro-video.md): an eighty-second shot list,
-spoken script, evidence references and a sixty-second alternative.
+[Public game and current API measurement](evidence/live-game/README.md)

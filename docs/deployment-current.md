@@ -5,7 +5,9 @@ Deployment date: 2026-09-22 (UTC)
 The deployment recorded on this date runs the Mashgin API on the Oracle Ampere ARM64 host at
 `147.15.78.236` behind the existing Nginx TLS virtual host:
 
-- Public URL: `https://checkout-lab.147-15-78-236.sslip.io`
+- Checkout public URL / `PUBLIC_ORIGIN`: `https://checkout-lab.147-15-78-236.sslip.io` (preserved)
+- API public URL: `https://api.megamashgin.top`
+- API TLS certificate: valid through 2026-12-21; renewal dry-run passed
 - Release: `r20260922t062903z-markettycoon`
 - Compose services: `api1`, `api2`, `migrate`, `postgres`, and `proxy`
 - Host proxy binding: `127.0.0.1:8080`; Nginx owns public ports 80 and 443
@@ -54,7 +56,11 @@ The following checks passed after the replacement:
 - Exact replay of the same idempotency key and body: HTTP 200 and the same receipt.
 - Changed body with the same idempotency key: HTTP 409.
 - CORS returned the requested explicit game origin and the game response exposed
-  the request, instance, replay, and retry headers.
+  the request, instance, replay, and retry headers. The production origins
+  `https://game.megamashgin.top` and
+  `https://mashgin-market-tycoon.vercel.app` were checked against the API domain;
+  an unrelated origin received no CORS grant. The API-domain record also covers
+  the `OPTIONS /api/sessions` preflight and the Certbot renewal dry-run.
 - Both API containers, PostgreSQL, and the proxy reported healthy in Compose.
 - PostgreSQL independently reported one current smoke session and one current
   smoke order. The preserved historical database remains separate.
@@ -86,13 +92,15 @@ existing shared-host compose overlay. Do not remove the PostgreSQL volume.
 
 ## Game access and limits
 
-The host does not currently serve a production MarketTycoon frontend, so only
-the explicit local development origins are enabled for the token-only game
-profile (`localhost`/`127.0.0.1` on ports 5180, 4180, and 4181). Visitor-cookie
-routes remain same-origin checkout routes. The deployment uses the bounded game
-quotas from the current source: 15,000 sessions per 10 minutes per IP and
-globally, and 1,800 game orders per minute. Ordinary checkout limits remain
-separate.
+The host does not serve the MarketTycoon frontend; the production frontend
+uses the Vercel origin `https://mashgin-market-tycoon.vercel.app`, with the
+custom game alias `https://game.megamashgin.top` also allowed by the API. Local
+development origins remain enabled for the token-only game profile
+(`localhost`/`127.0.0.1` on ports 5180, 4180, and 4181). Visitor-cookie routes
+remain same-origin checkout routes. The deployment uses the bounded game quotas
+from the current source: 15,000 sessions per 10 minutes per IP and globally,
+and 1,800 game orders per minute. Ordinary checkout limits remain separate.
+See [API-domain evidence](evidence/api-domain-preparation.json).
 
 The optional Jev provider was not configured in this release (`jevConfigured:
 false`); no paid provider call was needed for deployment verification.

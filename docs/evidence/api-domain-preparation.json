@@ -1,0 +1,92 @@
+{
+  "schema": "api-domain-preparation/v1",
+  "checkedAt": "2026-09-22T16:20:49Z",
+  "host": "147.15.78.236",
+  "domain": "api.megamashgin.top",
+  "dns": {
+    "aRecord": "147.15.78.236",
+    "resolvedAtCheck": true
+  },
+  "nginx": {
+    "vhost": "/etc/nginx/sites-available/api-megamashgin.conf",
+    "enabled": true,
+    "listen": [80, 443],
+    "upstream": "http://127.0.0.1:8080",
+    "acmeWebroot": "/var/www/certbot",
+    "configTest": "passed",
+    "reload": "completed"
+  },
+  "tls": {
+    "certificateIssued": true,
+    "certificateName": "api.megamashgin.top",
+    "expires": "2026-12-21",
+    "certbotAccountReused": true,
+    "newAccountCreated": false,
+    "scheduledRenewal": true,
+    "renewalDryRun": "passed"
+  },
+  "cors": {
+    "addedOrigins": ["https://game.megamashgin.top", "https://mashgin-market-tycoon.vercel.app"],
+    "replicas": ["checkout-lab-api1-1", "checkout-lab-api2-1"],
+    "eachReplicaReportedOrigin": true,
+    "publicOriginChanged": false
+  },
+  "services": {
+    "api1": "healthy",
+    "api2": "healthy",
+    "postgres": "preserved",
+    "proxy": "preserved",
+    "negociaria": "preserved",
+    "typeSafeKeyMoved": false
+  },
+  "deployment": {
+    "composeProject": "checkout-lab",
+    "release": "r20260922t062903z-markettycoon",
+    "envBackup": "/opt/checkout-lab/shared/backups/release.env-*pre-api-domain",
+    "restartedServices": ["api1", "api2"],
+    "untouchedServices": ["postgres", "proxy", "ai-negociacao-*"]
+  },
+  "checks": [
+    {
+      "url": "https://api.megamashgin.top/health/live",
+      "result": "200"
+    },
+    {
+      "url": "https://api.megamashgin.top/api/menu",
+      "origin": "https://game.megamashgin.top",
+      "result": "200",
+      "corsAllowOrigin": "https://game.megamashgin.top"
+    },
+    {
+      "url": "https://checkout-lab.147-15-78-236.sslip.io/api/menu",
+      "origin": "https://game.megamashgin.top",
+      "result": "200",
+      "corsAllowOrigin": "https://game.megamashgin.top"
+    },
+    {
+      "url": "https://api.megamashgin.top/api/menu",
+      "origin": "https://mashgin-market-tycoon.vercel.app",
+      "result": "200",
+      "corsAllowOrigin": "https://mashgin-market-tycoon.vercel.app"
+    },
+    {
+      "url": "https://api.megamashgin.top/api/sessions",
+      "method": "OPTIONS",
+      "origin": "https://game.megamashgin.top",
+      "result": "204",
+      "corsAllowOrigin": "https://game.megamashgin.top",
+      "corsAllowMethods": "GET,POST,OPTIONS"
+    },
+    {
+      "url": "https://api.megamashgin.top/api/menu",
+      "method": "GET",
+      "origin": "https://not-authorized.example",
+      "result": "200",
+      "corsAllowOrigin": "absent"
+    }
+  ],
+  "notes": [
+    "PUBLIC_ORIGIN remains the existing checkout-lab sslip origin pending checkout-domain publication.",
+    "HTTP ACME challenge location is retained for renewal; no default or Negociaria Nginx site was edited."
+  ]
+}
