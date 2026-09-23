@@ -82,3 +82,17 @@ The retained older autocomplete illustration uses a controlled provider response
 - Real financial settlement: all payments and products are fictional.
 
 See the [build log](ai/build-log.md), [Jev design](jev-discovery.md) and [operations](operations.md) for decisions, reproducibility and limits.
+
+## 2026-09-23 UTC — Structure and experience update
+
+Current delivery checks: **15 unit + 32 PostgreSQL integration + 22 Chromium
+browser scenarios passed**, including a real Web Audio signal measurement,
+persistent volume, moving decoration with stationary targets, reduced motion,
+checkout recovery and visitor history. The Vercel static build also passed.
+[Delivery record](evidence/structure-experience.json).
+
+The newly executed [public game/API experiments](evidence/live-game/README.md)
+separately establish 35 game receipts and a 60-second 1,280-purchase API sample.
+They do not reuse the historical SQL result as verification of the new IDs.
+The [public checkout origin check](evidence/live-game/checkout-origin.json) records
+a remaining 403 on visitor creation; no remote origin change is claimed.

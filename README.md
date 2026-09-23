@@ -4,7 +4,9 @@
 
 Browse **76 products in nine categories**, find something with instant search or optional Jev suggestions, place a fictional order and return to your receipts. Built for a person using a tablet alone.
 
-![The tablet-friendly market catalog and shopping basket](docs/images/checkout-desktop.png)
+[![A compact view of the market and its quick-add products](docs/images/checkout-overview.png)](https://www.megamashgin.top/)
+
+**[Open the checkout](https://www.megamashgin.top/) · [Play Mashgin Market](https://game.megamashgin.top/) · [Measured API results](docs/evidence/live-game/README.md)**
 
 **React · Fastify · PostgreSQL · two API replicas · anonymous visitor history · optional Jev**
 
@@ -28,7 +30,7 @@ docker compose down
 
 Stopping preserves orders. Add `--volumes` only when you intend to erase the demonstration database.
 
-**Live checkout:** [checkout-lab.147-15-78-236.sslip.io](https://checkout-lab.147-15-78-236.sslip.io). [Actual ARM64 deployment record](docs/deployment-current.md). The game is a separate client; see below.
+**Public frontend:** [www.megamashgin.top](https://www.megamashgin.top/). The API runs on Oracle ARM64; the frontend runs on Vercel. See [Vercel configuration and origin checks](docs/vercel.md) and the [deployment record](docs/deployment-current.md).
 
 ## See the experience
 
@@ -69,15 +71,42 @@ The modular backend can run in multiple processes. PostgreSQL coordinates sessio
 
 [Architecture](docs/architecture.md) · [API contract](docs/api.openapi.json) · [reviewer walkthrough](docs/market-tour.md).
 
-## A game that uses the same orders
+## Play the game. Inspect the real purchases.
 
-**Mashgin Market**, in the companion `MarketTycoon` repository, lets shoppers collect real catalog items and use this API as another client. Its live trace shows status, latency, serving replica and confirmed receipts. It also runs offline.
+**[Launch Mashgin Market →](https://game.megamashgin.top/)**
 
-![The companion market simulation exercising real checkout purchases](docs/images/market-client.png)
+[![The published game showing real API receipt traces](docs/evidence/live-game/browser/live-game.png)](https://game.megamashgin.top/)
 
-Game sessions use bearer credentials and an explicit CORS origin allowlist. They do not access visitor cookies or Jev, and cannot choose arbitrary prices. Game promotions are calculated by the server. See [operations](docs/operations.md) for `GAME_ORIGINS` and the separate bounded game quotas.
+The companion **MarketTycoon** client uses this same checkout API. Build a market,
+welcome shoppers and expand the store. The animated invitation on the checkout
+opens the game in another tab, keeping your shopping bag in place.
 
-A demonstration with multiple containers on one host is not host-level high availability. Autoscaling and database redundancy remain distinct operational decisions.
+**A fresh game starts in Offline sandbox.** To exercise the real backend, open
+**Settings → Live checkout API**, use `https://api.megamashgin.top`, enable
+**Show HTTP status, latency and purchase trace**, then apply. The game credits a
+sale only after a real receipt is confirmed. Animation speed is not network speed.
+
+### Measured on the public API — 2026-09-23 UTC
+
+| Experiment                         | Observed result                                                                 |
+| ---------------------------------- | ------------------------------------------------------------------------------- |
+| Published game, live mode          | 35 unique receipts; all 35 retrieved again; game ledger matched $76.11          |
+| Lost committed response            | Reload recovered the same receipt; game credited it once                        |
+| Scheduled API arrivals, 60 seconds | 1,280 of 1,280 purchases confirmed; zero errors or dropped arrivals             |
+| HTTP work during that write window | 2,560 POSTs: one session and one order per purchase; about 42.6 requests/second |
+| Purchase latency                   | 99 ms p95 for session creation **plus** order confirmation                      |
+| Persistence readback               | All 1,280 receipts matched subsequent authenticated GETs                        |
+
+Both API replicas served the measurement. The load driver calls the same public
+session/order endpoints as the game, independently of its animation. The game
+browser proof and load-driver proof are separate experiments. These short runs do
+not establish maximum capacity, a production SLA or host-level high availability.
+The current run verifies persistence through the API; direct SQL confirmation is
+not claimed without a new database check. [Raw results, method and reproduction](docs/evidence/live-game/README.md).
+
+Game sessions use bearer credentials and an explicit CORS origin allowlist. They
+do not access visitor cookies or Jev, and cannot choose arbitrary prices. Game
+promotions are calculated by the server. [Operations and bounded quotas](docs/operations.md).
 
 ## Develop and verify
 
@@ -122,23 +151,23 @@ The useful evidence is the decision trail: [accepted brief](docs/ai/plan.md), [i
 
 ## Repository map
 
-| Directory            | Responsibility                                                                  |
-| -------------------- | ------------------------------------------------------------------------------- |
-| `src/client/`        | React product, search and durable browser intention                             |
-| `src/server/`        | Fastify, authenticated visitors, catalog, transactional orders and optional Jev |
-| `src/shared/`        | Strict transport schemas; no server infrastructure                              |
-| `migrations/`        | Versioned schema/catalog with checksum checks                                   |
-| `tests/`             | Contracts, real PostgreSQL, browser and accessibility tests                     |
-| `infra/`             | Proxy and deployment configuration                                              |
-| `scripts/`           | Current verification, database and asset-generation tools                       |
-| `public/`            | Runtime artwork, licenses and press materials                                   |
-| `specs/`, `docs/ai/` | Behavior contracts and actual construction record                               |
+| Directory            | Responsibility                                                          |
+| -------------------- | ----------------------------------------------------------------------- |
+| `src/client/`        | App composition, catalog/checkout/history features, audio and shared UI |
+| `src/server/`        | HTTP adapters, business modules and PostgreSQL infrastructure           |
+| `src/shared/`        | Strict transport schemas; no server infrastructure                      |
+| `migrations/`        | Versioned schema/catalog with checksum checks                           |
+| `tests/`             | Contracts, real PostgreSQL, browser and accessibility tests             |
+| `infra/`             | Proxy and deployment configuration                                      |
+| `scripts/`           | Current verification, database and asset-generation tools               |
+| `public/`            | Runtime artwork, licenses and press materials                           |
+| `specs/`, `docs/ai/` | Behavior contracts and actual construction record                       |
 
 The earlier prototype and unused temporary tooling were removed. [Cleanup record](docs/cleanup.md). `.env`, credentials, database dumps, dependencies and local test caches are excluded from publication. Licensed model sources remain because they regenerate the current artwork.
 
 ## Art, brand and limits
 
-The product combines original concept branding, Kenney CC0 food renders, original drink illustrations, subtle warm-item vapor and quiet category-specific cart sounds. `/press/` contains the downloadable brand kit and source credits. [Brand and provenance](docs/brand-and-experience.md).
+The product combines original concept branding, Kenney CC0 food renders, original drink illustrations, subtle warm-item vapor and adjustable category-specific cart sounds with an explicit preview. `/press/` contains the downloadable brand kit and source credits. [Brand and provenance](docs/brand-and-experience.md).
 
 This is not a payment processor, inventory system or fulfillment service. Visitor credentials last 30 days; purchase sessions last 24 hours. Browser storage is needed to recover an uncertain intention. Selected automated accessibility checks are evidence for those scenarios, not a blanket certification. See [operations](docs/operations.md) for deployment, retention and backup scope.
 

@@ -1,0 +1,85 @@
+{
+  "checkedAt": "2026-09-23T01:11:50.818Z",
+  "verification": {
+    "startedAt": "2026-09-23T01:10:52.383Z",
+    "finishedAt": "2026-09-23T01:11:04.693Z",
+    "node": "v24.18.0",
+    "platform": "win32",
+    "sourceFingerprint": "d9203185d936238844319d5d21b94b0ee4cc24da48446e4fd9e105c8ab1668bc",
+    "ok": true,
+    "steps": [
+      {
+        "name": "format",
+        "exitCode": 0,
+        "durationMs": 2043
+      },
+      {
+        "name": "architecture",
+        "exitCode": 0,
+        "durationMs": 69
+      },
+      {
+        "name": "api-contract",
+        "exitCode": 0,
+        "durationMs": 212
+      },
+      {
+        "name": "types",
+        "exitCode": 0,
+        "durationMs": 3105
+      },
+      {
+        "name": "unit",
+        "exitCode": 0,
+        "durationMs": 795
+      },
+      {
+        "name": "integration",
+        "exitCode": 0,
+        "durationMs": 3540
+      },
+      {
+        "name": "server-build",
+        "exitCode": 0,
+        "durationMs": 1647
+      },
+      {
+        "name": "web-build",
+        "exitCode": 0,
+        "durationMs": 895
+      }
+    ],
+    "note": "Browser and container checks are separate."
+  },
+  "counts": {
+    "unit": 15,
+    "postgresIntegration": 32,
+    "browser": 22
+  },
+  "browser": {
+    "startTime": "2026-09-23T01:08:00.634Z",
+    "duration": 38120.051999999996,
+    "expected": 22,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "staticVercelBuild": "npm run build:web passed",
+  "visualReview": {
+    "viewports": [1440, 768, 390],
+    "readmeCapture": "1440x600",
+    "gameInvitation": "reviewed",
+    "mobileSoundPanel": "reviewed"
+  },
+  "audio": "Real AudioContext and analyser samples; preview signal exceeded 0.015 at 75% volume. No assertion about physical speakers.",
+  "production": {
+    "frontendPublishedByThisTask": false,
+    "apiChangedByThisTask": false,
+    "publicGameProof": "live-game/browser/result.json",
+    "publicApiMeasurement": "live-game/rate-1280.json",
+    "checkoutOrigin": "live-game/checkout-origin.json",
+    "independentSqlCheck": false
+  },
+  "vercelConfigSha256": "10825fb241e2fec9c7dd79422240b5177a5408f17ef9d5b15a685e536898bcde",
+  "limits": "Browser tests ran after final UI changes. Subsequent changes were proof scripts and documentation. No remote deployment, push, high-availability test or independent review."
+}

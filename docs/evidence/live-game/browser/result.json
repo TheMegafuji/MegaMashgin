@@ -1,0 +1,202 @@
+{
+  "startedAt": "2026-09-23T01:01:53.258Z",
+  "finishedAt": "2026-09-23T01:02:17.546Z",
+  "game": "https://game.megamashgin.top",
+  "api": "https://api.megamashgin.top",
+  "defaultMode": "offline",
+  "modeTested": "Live checkout API",
+  "simulation": "accelerated through existing debug advance; not a wall-clock throughput benchmark",
+  "network": "real public browser requests; no route interception or mocks",
+  "orderStatuses": [
+    201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201,
+    201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201, 201
+  ],
+  "uniqueReceipts": 35,
+  "gamePaid": 35,
+  "totalCents": 7611,
+  "gameTotalEarned": 76.11,
+  "pending": 0,
+  "readbackMatches": 35,
+  "replicas": ["api-1", "api-2"],
+  "errors": [],
+  "receiptIds": [
+    "5e808ebc-5d1f-467b-8bcc-da55c0716a3b",
+    "e79466af-7fbe-402b-a889-a8061ab5a588",
+    "0dd0961c-e7aa-4d0a-bb91-56181b71528a",
+    "0e96baeb-3d94-4cf1-83d9-4b3f5b6045a9",
+    "47c3e4c7-482e-4382-bf74-bfcf04f779e6",
+    "dfe246e7-f723-46b0-81c3-d616e8f60882",
+    "c94f7240-bf94-450e-bbcc-f7d4e06a2a7a",
+    "ce728493-1bad-4b90-b5b3-8b8ce276e70c",
+    "efe2d756-5f86-496b-b90b-a7fffc5e3939",
+    "b724b150-431a-42f3-b012-6d5bd9483e73",
+    "0de20500-dee2-48db-b580-8ece130a0482",
+    "7e22f6b1-b26b-41b5-ae3c-1c0366f11984",
+    "b01bccf5-b028-432e-8184-6fffb62f2e6d",
+    "bad7d9bc-a586-4b72-9b32-cfd26f0e2ee8",
+    "c380b6b8-4155-42f6-91b5-10669762c470",
+    "1f79bb4c-92a8-43b0-835c-2b529ae9dcf4",
+    "4931b798-bdfd-47f6-96fb-d15d21736205",
+    "85430298-b9d1-4151-8291-d907be043a5e",
+    "b91b7277-4d27-4788-badc-3eb89fc7c6fc",
+    "2b7feeba-7276-49d4-8416-eba3e50db85e",
+    "08308444-7d1e-483d-8193-765db30c31d8",
+    "344e2730-5c97-496a-bb89-34ab71c00727",
+    "cd8c3572-18d8-4ea6-9866-b26804e13c87",
+    "5f69f8a2-2498-4d9b-9c4f-2730f5584b71",
+    "5a783b95-7596-4edc-90f9-ff2b350b7385",
+    "25d57848-ea6f-4d91-b893-c918f07afe53",
+    "c2482d58-af7f-44f1-9a8e-a23773bd92ce",
+    "1f290b95-144d-4099-9fc6-e103d8d4c66c",
+    "1c126524-4760-4070-9f2d-e7c4cc3508d9",
+    "155e682d-111d-4c75-9022-399c749b711c",
+    "498060ca-c063-4f70-85ea-78bd6c8fd57b",
+    "a8a54f1c-3c2c-4c25-8185-27c5b0fbc130",
+    "2cdcc927-9512-463e-a148-9907d8ad14ef",
+    "e086d1e8-bf5e-401b-b32c-1d1aa7746352",
+    "dc5c1a2e-360b-44c9-adc7-c08f56392436"
+  ],
+  "receipts": [
+    {
+      "id": "5e808ebc-5d1f-467b-8bcc-da55c0716a3b",
+      "totalCents": 129
+    },
+    {
+      "id": "e79466af-7fbe-402b-a889-a8061ab5a588",
+      "totalCents": 129
+    },
+    {
+      "id": "0dd0961c-e7aa-4d0a-bb91-56181b71528a",
+      "totalCents": 258
+    },
+    {
+      "id": "0e96baeb-3d94-4cf1-83d9-4b3f5b6045a9",
+      "totalCents": 258
+    },
+    {
+      "id": "47c3e4c7-482e-4382-bf74-bfcf04f779e6",
+      "totalCents": 258
+    },
+    {
+      "id": "dfe246e7-f723-46b0-81c3-d616e8f60882",
+      "totalCents": 387
+    },
+    {
+      "id": "c94f7240-bf94-450e-bbcc-f7d4e06a2a7a",
+      "totalCents": 258
+    },
+    {
+      "id": "ce728493-1bad-4b90-b5b3-8b8ce276e70c",
+      "totalCents": 129
+    },
+    {
+      "id": "efe2d756-5f86-496b-b90b-a7fffc5e3939",
+      "totalCents": 129
+    },
+    {
+      "id": "b724b150-431a-42f3-b012-6d5bd9483e73",
+      "totalCents": 258
+    },
+    {
+      "id": "0de20500-dee2-48db-b580-8ece130a0482",
+      "totalCents": 129
+    },
+    {
+      "id": "7e22f6b1-b26b-41b5-ae3c-1c0366f11984",
+      "totalCents": 258
+    },
+    {
+      "id": "b01bccf5-b028-432e-8184-6fffb62f2e6d",
+      "totalCents": 129
+    },
+    {
+      "id": "bad7d9bc-a586-4b72-9b32-cfd26f0e2ee8",
+      "totalCents": 258
+    },
+    {
+      "id": "c380b6b8-4155-42f6-91b5-10669762c470",
+      "totalCents": 258
+    },
+    {
+      "id": "1f79bb4c-92a8-43b0-835c-2b529ae9dcf4",
+      "totalCents": 129
+    },
+    {
+      "id": "4931b798-bdfd-47f6-96fb-d15d21736205",
+      "totalCents": 258
+    },
+    {
+      "id": "85430298-b9d1-4151-8291-d907be043a5e",
+      "totalCents": 387
+    },
+    {
+      "id": "b91b7277-4d27-4788-badc-3eb89fc7c6fc",
+      "totalCents": 258
+    },
+    {
+      "id": "2b7feeba-7276-49d4-8416-eba3e50db85e",
+      "totalCents": 129
+    },
+    {
+      "id": "08308444-7d1e-483d-8193-765db30c31d8",
+      "totalCents": 129
+    },
+    {
+      "id": "344e2730-5c97-496a-bb89-34ab71c00727",
+      "totalCents": 129
+    },
+    {
+      "id": "cd8c3572-18d8-4ea6-9866-b26804e13c87",
+      "totalCents": 387
+    },
+    {
+      "id": "5f69f8a2-2498-4d9b-9c4f-2730f5584b71",
+      "totalCents": 129
+    },
+    {
+      "id": "5a783b95-7596-4edc-90f9-ff2b350b7385",
+      "totalCents": 129
+    },
+    {
+      "id": "25d57848-ea6f-4d91-b893-c918f07afe53",
+      "totalCents": 387
+    },
+    {
+      "id": "c2482d58-af7f-44f1-9a8e-a23773bd92ce",
+      "totalCents": 258
+    },
+    {
+      "id": "1f290b95-144d-4099-9fc6-e103d8d4c66c",
+      "totalCents": 129
+    },
+    {
+      "id": "1c126524-4760-4070-9f2d-e7c4cc3508d9",
+      "totalCents": 129
+    },
+    {
+      "id": "155e682d-111d-4c75-9022-399c749b711c",
+      "totalCents": 387
+    },
+    {
+      "id": "498060ca-c063-4f70-85ea-78bd6c8fd57b",
+      "totalCents": 387
+    },
+    {
+      "id": "a8a54f1c-3c2c-4c25-8185-27c5b0fbc130",
+      "totalCents": 258
+    },
+    {
+      "id": "2cdcc927-9512-463e-a148-9907d8ad14ef",
+      "totalCents": 129
+    },
+    {
+      "id": "e086d1e8-bf5e-401b-b32c-1d1aa7746352",
+      "totalCents": 129
+    },
+    {
+      "id": "dc5c1a2e-360b-44c9-adc7-c08f56392436",
+      "totalCents": 129
+    }
+  ],
+  "ok": true
+}

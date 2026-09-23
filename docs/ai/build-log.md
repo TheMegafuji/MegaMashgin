@@ -114,3 +114,28 @@ The current deployment notes distinguish the existing ARM64 Oracle deployment fr
 Reviewed current public documentation and dated evidence before publication. Removed links to deleted documents, made each repository's evidence navigation independent of sibling directories, and clarified original-scope decisions and historical test results. Imported evidence snapshots were checked byte-for-byte against their source files.
 
 Across the checkout and game repositories, the final documentation scan covered 75 Markdown files and 263 local links: no missing targets, ignored-file targets or links escaping the repository remained. Credential-pattern checks found no candidates in the documentation examined or its local Git history (59 checkout and 73 game documentation blobs). This was a scoped documentation review, not a complete application security assessment or validation of every external URL. Formatting and specification/architecture reference checks passed; no new runtime test, deployment or push was performed for these prose changes.
+
+## 2026-09-23 UTC — Structure, sensory feedback and real game traffic
+
+- Extracted catalog, checkout and history features from the flat client layout.
+  Split API composition from HTTP security, routes, static pages and business
+  modules. Existing transaction, ownership and recovery semantics were preserved.
+- Investigated the cart synth: its original 0.018/notes envelope was very quiet.
+  Added persistent volume and an explicit preview; strengthened decorative motion
+  while retaining stationary controls, global pause and reduced-motion behavior.
+- Added a compact animated link to the published game. Replaced the long opening
+  README capture with a 1440x600 viewport crop; linked the game and its evidence.
+- The public game starts offline. Explicitly selected Live checkout API in a real
+  browser; 35 receipts, ledger $76.11 and subsequent reads matched. A separate
+  lost-response experiment recovered one receipt and credited it once.
+- Measured the public API in bounded 80/320/1280 purchases-per-minute stages.
+  The largest stage confirmed and reread 1,280 unique purchases over a 60-second
+  arrival window: zero errors/drops, approximately 99 ms p95 for session + order.
+  No claim of maximum capacity or a new independent SQL verification is made.
+- Confirmed the Vercel frontend variable VITE_CHECKOUT_API_URL is unused here.
+  Updated the same-origin proxy destination. Found a live 403 on visitor creation:
+  the API's PUBLIC_ORIGIN needs the www.megamashgin.top origin. SSH authentication
+  was unavailable, so no server environment change or remote SQL check was made.
+- Full local verification passed with 15 unit and 32 PostgreSQL integration tests.
+  All 22 Chromium scenarios passed, including real audio signal sampling and
+  animation/link behavior. The static Vercel build also passed. Commits remain local.
