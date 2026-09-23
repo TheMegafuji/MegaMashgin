@@ -1,0 +1,215 @@
+/* Moving illustration only: the game link and all touch targets stay fixed. */
+.game-invitation {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) 1.2fr;
+  gap: 40px;
+  align-items: center;
+  max-width: 1320px;
+  margin: 32px auto 48px;
+  padding: 28px 44px;
+  border: 1px solid #d4dcc6;
+  border-radius: 24px;
+  background: #edf0df;
+  overflow: hidden;
+}
+.game-copy .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #455532;
+}
+.game-copy h2 {
+  font-size: clamp(24px, 2.6vw, 36px);
+  line-height: 1.15;
+  margin: 12px 0;
+  letter-spacing: -0.04em;
+}
+.game-copy p {
+  max-width: 440px;
+  color: #49513e;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.game-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 13px 20px;
+  border-radius: 12px;
+  background: #253326;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  margin: 6px 0 12px;
+  transition: background 0.2s;
+}
+.game-link:hover {
+  background: #425941;
+}
+.game-copy small {
+  display: block;
+  color: #49513e;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.game-miniature {
+  position: relative;
+  height: 200px;
+  isolation: isolate;
+}
+.game-sun {
+  position: absolute;
+  right: 10%;
+  top: 0;
+  color: #776213;
+  animation: game-spark 10s linear infinite;
+}
+.mini-store {
+  position: absolute;
+  width: 200px;
+  height: 138px;
+  background: #fffcf0;
+  left: calc(50% - 100px);
+  top: 22px;
+  border-radius: 12px 12px 2px 2px;
+  border: 3px solid #405640;
+  box-shadow: 10px 12px 0 #d2dabe;
+}
+.mini-store > span {
+  display: block;
+  background: #405640;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 9px 0;
+  letter-spacing: 0.08em;
+}
+.mini-awning {
+  height: 22px;
+  background: repeating-linear-gradient(90deg, #dace70 0 24px, #faf1c3 24px 48px);
+  border-radius: 0 0 8px 8px;
+  border-bottom: 3px solid #405640;
+}
+.mini-shelves {
+  display: flex;
+  gap: 9px;
+  align-items: end;
+  position: absolute;
+  left: 17px;
+  bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 4px solid #8e6d46;
+}
+.mini-shelves i {
+  width: 18px;
+  height: 26px;
+  background: #c26844;
+  border-radius: 6px 6px 2px 2px;
+}
+.mini-shelves i:nth-child(2) {
+  height: 32px;
+  background: #799050;
+}
+.mini-shelves i:nth-child(3) {
+  height: 23px;
+  background: #d3aa44;
+}
+.mini-door {
+  position: absolute;
+  width: 43px;
+  height: 67px;
+  bottom: 0;
+  right: 16px;
+  background: #dce6da;
+  border: 3px solid #405640;
+  border-bottom: 0;
+}
+.mini-road {
+  position: absolute;
+  height: 30px;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  border-bottom: 2px dashed #a6b195;
+}
+.mini-shopper {
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  color: #31462f;
+  animation: market-walk 9s linear infinite;
+}
+.shopper-two {
+  animation-delay: -3s;
+  color: #8b452d;
+}
+.shopper-three {
+  animation-delay: -6s;
+  color: #665818;
+}
+@keyframes market-walk {
+  0% {
+    left: 0;
+    opacity: 0;
+    transform: translateY(0) rotate(-8deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    transform: translateY(-6px) rotate(8deg);
+  }
+  50% {
+    transform: translateY(0) rotate(-8deg);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 90%;
+    opacity: 0;
+    transform: translateY(0) rotate(-8deg);
+  }
+}
+@keyframes game-spark {
+  to {
+    rotate: 360deg;
+  }
+}
+@media (max-width: 900px) {
+  .game-invitation {
+    margin: 24px 20px 36px;
+    padding: 24px;
+    gap: 24px;
+  }
+}
+@media (max-width: 600px) {
+  .game-invitation {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .game-miniature {
+    height: 180px;
+  }
+  .game-copy h2 {
+    font-size: 28px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .game-invitation *,
+  .game-invitation *::before {
+    animation: none !important;
+    transition: none !important;
+  }
+  .shopper-one {
+    left: 15%;
+  }
+  .shopper-two {
+    left: 48%;
+  }
+  .shopper-three {
+    left: 80%;
+  }
+}

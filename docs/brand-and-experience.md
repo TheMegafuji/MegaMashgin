@@ -45,3 +45,21 @@ This is a metadata and static press-page foundation. It does not assert search-e
 4. Pause motion or turn on the operating system's reduced-motion preference.
 5. Complete a demo order; check the receipt branding and visitor history.
 6. Open Press & brand kit, preview the social graphics and download the ZIP.
+
+## Experience update — 2026-09-23 UTC
+
+The initial cart envelope peaked at 0.018 divided by the number of notes, with
+120 ms notes. That produced a very quiet cue. The revised envelope uses adjustable
+volume (60% by default), a 0.16 master scale normalized across notes and 220 ms
+notes. A Sound settings panel offers a preview and persists volume independently
+of mute. Preview is an explicit user gesture; no music or autoplay was added.
+Audio-device failure still cannot block the purchase flow.
+
+A browser test now samples a real Web Audio analyser and requires a nonzero signal
+above the test threshold, rather than only observing oscillator scheduling. This
+verifies synthesis in the browser, not the listener's physical speakers or OS mute.
+
+The hero artwork floats over an 18 px range, warm-item vapor has stronger contrast,
+and quantity badges animate on each increase. A small animated storefront links
+to the published game in a new tab. All purchase and navigation targets remain
+stationary. Reduced motion and the global pause control still govern decoration.

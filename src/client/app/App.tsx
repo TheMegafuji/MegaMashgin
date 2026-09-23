@@ -11,15 +11,14 @@ import {
   Search,
   ShoppingBag,
   Sparkles,
-  Volume2,
-  VolumeX,
   WifiOff,
   X,
 } from 'lucide-react';
 import { useState } from 'react';
 import { money } from '../../shared/contracts.js';
 import { localMatches } from '../../shared/discovery.js';
-import { useCartSound } from '../audio/sound.js';
+import { SoundControls } from '../audio/SoundControls.js';
+import { GameInvitation } from '../components/GameInvitation.js';
 import { Brand } from '../components/Brand.js';
 import { Collections, Landing, categories } from '../features/catalog/Landing.js';
 import { ProductCard } from '../features/catalog/ProductCard.js';
@@ -34,7 +33,6 @@ import { useVisitor } from '../features/history/useVisitor.js';
 export function App() {
   const c = useCheckout();
   const identity = useVisitor();
-  const sound = useCartSound();
   const [category, setCategory] = useState('All');
   const [search, setSearch] = useState('');
   const [visibleCount, setVisibleCount] = useState(16);
@@ -83,18 +81,12 @@ export function App() {
           >
             The market
           </a>
-          <button onClick={() => browseCategory('Hot food')}>Feeling hungry?</button>
+          <a href="https://game.megamashgin.top/" target="_blank" rel="noopener noreferrer">
+            Play the game<span className="sr-only"> (opens in a new tab)</span>
+          </a>
         </nav>
         <div className="header-actions">
-          <button
-            className="sound-toggle"
-            aria-label={sound.enabled ? 'Mute cart sounds' : 'Enable cart sounds'}
-            aria-pressed={sound.enabled}
-            title={sound.enabled ? 'Cart sounds on · quiet volume' : 'Cart sounds off'}
-            onClick={sound.toggle}
-          >
-            {sound.enabled ? <Volume2 size={17} /> : <VolumeX size={17} />}
-          </button>
+          <SoundControls />
           <button
             className="motion-toggle"
             aria-label={motion ? 'Pause animation' : 'Play animation'}
@@ -154,6 +146,7 @@ export function App() {
             locked={locked}
           />
           <Collections onCategory={browseCategory} />
+          <GameInvitation />
           <main className="shop-layout" id="market-menu">
             <section className="menu-section" aria-label="Market menu">
               <div className="market-heading">

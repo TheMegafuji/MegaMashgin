@@ -26,7 +26,7 @@ export function ProductCard({
         {isServedWarm(product) && product.available && <ProductAtmosphere />}
         <img src={product.image} alt="" width="400" height="280" loading="lazy" />
         {quantity > 0 && (
-          <span className="selected-pill">
+          <span key={quantity} className="selected-pill">
             <Check size={13} /> {quantity} in your order
           </span>
         )}

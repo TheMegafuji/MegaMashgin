@@ -284,7 +284,7 @@
   top: -65px;
   z-index: 4;
   pointer-events: none;
-  color: #fff;
+  color: #bb8c66;
   overflow: visible;
   filter: blur(1.4px) drop-shadow(0 0 2px #71675645);
 }
@@ -312,10 +312,10 @@
     opacity: 0;
   }
   18% {
-    opacity: 0.62;
+    opacity: 0.8;
   }
   65% {
-    opacity: 0.35;
+    opacity: 0.5;
   }
   100% {
     stroke-dashoffset: 5;
@@ -507,5 +507,95 @@
 @media (max-width: 700px) {
   .hero-spark {
     display: none;
+  }
+}
+
+.sound-controls {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.sound-settings {
+  position: relative;
+}
+.sound-settings summary {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 42px;
+  border-radius: 10px;
+  cursor: pointer;
+  list-style: none;
+}
+.sound-settings summary::-webkit-details-marker {
+  display: none;
+}
+.sound-settings summary:hover {
+  background: #eeeede;
+}
+.sound-settings summary:focus-visible {
+  outline: 2px solid #405640;
+  outline-offset: 2px;
+}
+.sound-panel {
+  position: absolute;
+  z-index: 20;
+  right: 0;
+  top: 48px;
+  width: min(290px, calc(100vw - 32px));
+  padding: 20px;
+  border: 1px solid #d4dcc6;
+  border-radius: 16px;
+  background: #fffcf4;
+  box-shadow: 0 10px 35px #23302320;
+  color: #263227;
+}
+.sound-panel p {
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 8px 0;
+  color: #4c5947;
+}
+.sound-panel label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 700;
+}
+.sound-panel input {
+  width: 100%;
+  margin: 14px 0;
+  accent-color: #405640;
+}
+.sound-panel .secondary-button {
+  width: 100%;
+  min-height: 42px;
+}
+.selected-pill {
+  animation: bag-pop 0.3s ease-out;
+}
+.confirmation-icon {
+  animation: receipt-arrive 0.55s ease-out both;
+}
+@keyframes receipt-arrive {
+  from {
+    opacity: 0;
+    transform: scale(0.7) rotate(-15deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+@media (max-width: 600px) {
+  .sound-panel {
+    right: -100px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .selected-pill,
+  .confirmation-icon,
+  .floating-product > img {
+    animation: none !important;
   }
 }

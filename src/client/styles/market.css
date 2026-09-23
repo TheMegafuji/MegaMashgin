@@ -954,7 +954,7 @@ html {
     translate: 0 0;
   }
   50% {
-    translate: 0 -9px;
+    translate: 0 -18px;
   }
 }
 @keyframes card-arrive {

@@ -2,6 +2,7 @@ import { useSyncExternalStore } from 'react';
 import type { Product } from '../../shared/contracts.js';
 
 export const SOUND_KEY = 'megafuji.cart-sound.v1';
+export const VOLUME_KEY = 'megafuji.cart-volume.v1';
 export const categoryVoices: Record<
   Product['category'],
   { notes: number[]; wave: OscillatorType }
@@ -24,6 +25,26 @@ function savedPreference() {
   }
 }
 let enabled = savedPreference();
+function savedVolume() {
+  try {
+    const raw = localStorage.getItem(VOLUME_KEY);
+    const value = raw === null ? 0.6 : Number(raw);
+    return Number.isFinite(value) ? Math.max(0, Math.min(1, value)) : 0.6;
+  } catch {
+    return 0.6;
+  }
+}
+let volume = savedVolume();
+export function setCartVolume(value: number) {
+  if (!Number.isFinite(value)) return;
+  volume = Math.max(0, Math.min(1, value));
+  try {
+    localStorage.setItem(VOLUME_KEY, String(volume));
+  } catch {
+    /* Optional preference. */
+  }
+  for (const listener of listeners) listener();
+}
 let context: AudioContext | undefined;
 let last = -Infinity;
 const listeners = new Set<() => void>();
@@ -49,46 +70,54 @@ export function useCartSound() {
       () => enabled,
       () => false,
     ),
+    volume: useSyncExternalStore(
+      subscribe,
+      () => volume,
+      () => 0.6,
+    ),
+    setVolume: setCartVolume,
     toggle: () => setCartSound(!enabled),
   };
 }
-/** Called only after a user gesture successfully saves an increased cart quantity. */
-export function playCartSound(category: Product['category']) {
-  if (!enabled || document.hidden || performance.now() - last < 140) return;
+/** User gesture only: accepted additions or the explicit sound preview. */
+export async function playCartSound(
+  category: Product['category'],
+  preview = false,
+): Promise<boolean> {
+  if (!enabled || volume === 0 || document.hidden || (!preview && performance.now() - last < 140))
+    return false;
   last = performance.now();
   try {
-    context ??= new AudioContext();
+    if (!context || context.state === 'closed')
+      context = new AudioContext({ latencyHint: 'interactive' });
     const audio = context;
-    const play = () => {
-      if (!enabled || document.hidden || audio.state !== 'running') return;
-      const voice = categoryVoices[category];
-      voice.notes.forEach((hz, index) => {
-        const oscillator = audio.createOscillator(),
-          gain = audio.createGain();
-        const start = audio.currentTime + index * 0.04,
-          end = start + 0.12;
-        oscillator.type = voice.wave;
-        oscillator.frequency.setValueAtTime(hz, start);
-        gain.gain.setValueAtTime(0.0001, start);
-        gain.gain.exponentialRampToValueAtTime(0.018 / voice.notes.length, start + 0.008);
-        gain.gain.exponentialRampToValueAtTime(0.0001, end);
-        oscillator.connect(gain);
-        gain.connect(audio.destination);
-        oscillator.onended = () => {
-          oscillator.disconnect();
-          gain.disconnect();
-        };
-        oscillator.start(start);
-        oscillator.stop(end + 0.01);
-      });
-    };
-    if (audio.state === 'suspended')
-      void audio
-        .resume()
-        .then(play)
-        .catch(() => {});
-    else play();
+    if (audio.state !== 'running') await audio.resume();
+    if (!enabled || document.hidden || audio.state !== 'running') return false;
+    const voice = categoryVoices[category];
+    voice.notes.forEach((hz, index) => {
+      const oscillator = audio.createOscillator();
+      const gain = audio.createGain();
+      const start = audio.currentTime + 0.01 + index * 0.065;
+      const end = start + 0.22;
+      oscillator.type = voice.wave;
+      oscillator.frequency.setValueAtTime(hz, start);
+      gain.gain.setValueAtTime(0.0001, start);
+      gain.gain.exponentialRampToValueAtTime(
+        Math.max(0.0001, (0.16 * volume) / Math.sqrt(voice.notes.length)),
+        start + 0.012,
+      );
+      gain.gain.exponentialRampToValueAtTime(0.0001, end);
+      oscillator.connect(gain);
+      gain.connect(audio.destination);
+      oscillator.onended = () => {
+        oscillator.disconnect();
+        gain.disconnect();
+      };
+      oscillator.start(start);
+      oscillator.stop(end + 0.01);
+    });
+    return true;
   } catch {
-    /* Audio is enhancement only, never part of checkout correctness. */
+    return false; /* Audio failure never blocks checkout. */
   }
 }
