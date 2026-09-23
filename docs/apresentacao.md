@@ -57,3 +57,6 @@ volume do sistema, da aba e do dispositivo escolhido.
 As ilustrações flutuam, os itens quentes têm vapor, a seleção responde ao toque e
 o convite do jogo tem uma pequena loja animada. Botões ficam parados. Preferência
 de movimento reduzido e o botão de pausa continuam respeitados.
+
+Para gravar a apresentação, use o [roteiro de vídeo de 5 a 6 minutos](roteiro-video.md),
+com cenas, falas curtas e uma versão de 90 segundos.
