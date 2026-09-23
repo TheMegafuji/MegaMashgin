@@ -494,3 +494,33 @@ describe('PostgreSQL purchase guarantees', () => {
     expect(ordinary.json().error.code).toBe('PROMOTION_NOT_ALLOWED');
   });
 });
+
+it('[CK-10] accepts the configured Vercel checkout origin through its proxy, but rejects unrelated origins', async () => {
+  const proxyApp = await buildApp({ pool: poolA, publicOrigin: 'https://www.megamashgin.top' });
+  try {
+    const headers = {
+      host: 'api.megamashgin.top',
+      origin: 'https://www.megamashgin.top',
+      'sec-fetch-site': 'same-origin',
+    };
+    const visitor = await proxyApp.inject({
+      method: 'POST',
+      url: '/api/visitor',
+      headers,
+      payload: {},
+    });
+    expect(visitor.statusCode).toBe(200);
+    expect(visitor.headers['set-cookie']).toContain('HttpOnly');
+    expect(visitor.headers['set-cookie']).toContain('Secure');
+    expect(visitor.headers['access-control-allow-origin']).toBeUndefined();
+    const denied = await proxyApp.inject({
+      method: 'POST',
+      url: '/api/visitor',
+      headers: { ...headers, origin: 'https://unrelated.example' },
+      payload: {},
+    });
+    expect(denied.statusCode).toBe(403);
+  } finally {
+    await proxyApp.close();
+  }
+});

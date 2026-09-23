@@ -6,7 +6,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://checkout-lab.147-15-78-236.sslip.io/api/:path*"
+      "destination": "https://api.megamashgin.top/api/:path*"
     }
   ],
   "headers": [

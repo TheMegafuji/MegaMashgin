@@ -6,6 +6,11 @@ import { pageMetadata, publicationOrigin, robots, sitemap } from '../src/server/
 const root = resolve(fileURLToPath(new URL('.', import.meta.url)), '..');
 const output = resolve(root, 'dist', 'client');
 const vercelEnv = process.env.VERCEL_ENV;
+if (process.env.VITE_CHECKOUT_API_URL) {
+  console.warn(
+    'VITE_CHECKOUT_API_URL is not used by this checkout. /api is proxied by vercel.json; remove this frontend variable.',
+  );
+}
 const explicitOrigin = process.env.PUBLIC_ORIGIN;
 const productionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
 
