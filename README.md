@@ -1,5 +1,7 @@
 # Mashgin Market — Checkout
 
+https://github.com/user-attachments/assets/70c58adb-6b2f-4dab-9cae-ff9a57d10371
+
 ### A small market with a checkout you can trust.
 
 Browse **76 products in nine categories**, find something with instant search or optional Jev suggestions, place a fictional order and return to your receipts. Built for a person using a tablet alone.
@@ -11,12 +13,6 @@ Browse **76 products in nine categories**, find something with instant search or
 **React · Fastify · PostgreSQL · two API replicas · anonymous visitor history · optional Jev**
 
 > Independent portfolio concept by Megafuji, inspired by Mashgin. Products and payments are fictional. The app never asks for a card number or CVV.
-
-## Video walkthrough
-
-[**Watch the project demo →**](docs/videos/megamashgin.mp4)
-
-A walkthrough of the checkout and the companion market game. [Download the MP4](docs/videos/megamashgin.mp4?raw=1) (21.4 MB).
 
 ## Try the complete product
 
