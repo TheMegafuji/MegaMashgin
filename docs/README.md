@@ -18,5 +18,5 @@ The alternate game client is a separate project. Its remote API measurements nee
 
 [Public game and current API measurement](evidence/live-game/README.md) · [Short presentation guide in Portuguese](apresentacao.md).
 
-[Video recording guide in Portuguese](roteiro-video.md): a five-minute shot list,
-spoken script, evidence references and a ninety-second alternative.
+[Video recording guide in Portuguese](roteiro-video.md): an eighty-second shot list,
+spoken script, evidence references and a sixty-second alternative.
